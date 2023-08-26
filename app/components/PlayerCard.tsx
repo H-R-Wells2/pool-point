@@ -2,58 +2,83 @@
 
 import { useState } from "react";
 
-interface Props{
-    name: string;
+interface Props {
+  name: string;
 }
 
-const PlayerCard = ({name}:Props) => {
+const PlayerCard = ({ name }: Props) => {
   const [score, setScore] = useState(0);
 
-  const handleScoreChange = (amount:number) => {
+  const handleScoreChange = (amount: number) => {
     setScore(score + amount);
   };
 
   return (
     <div className="my-3 bg-slate-700 rounded-lg p-4 max-w-sm">
       <div className="flex w-full items-center mb-5 border-b border-gray-900">
-        <h1 className="text-2xl font-normal mb-2">{name}</h1>
-        <div className="flex justify-center items-center w-full mx-2 mb-2">
-          <button className="mr-6 bg-gray-800 p-1 rounded-lg" onClick={() => handleScoreChange(-1)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
+        <div className="w-full flex justify-between">
+          <h1 className="text-2xl font-normal mb-2">{name}</h1>
+          <div className="flex justify-center items-center mx-2 mb-2">
+            <button
+              className="mr-6 bg-gray-800 p-1 rounded-lg"
+              onClick={() => handleScoreChange(-1)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 12h-15"
-              />
-            </svg>
-          </button>
-          <h1 className="text-2xl font-semibold text-center px-2 py-1 bg-teal-500 rounded-lg">
-            {score}
-          </h1>
-          <button className="ml-6 bg-gray-800 p-1 rounded-lg" onClick={() => handleScoreChange(1)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 12h-15"
+                />
+              </svg>
+            </button>
+            <h1 className="text-2xl font-semibold text-center px-2 py-1 bg-teal-500 rounded-lg">
+              {score}
+            </h1>
+            <button
+              className="ml-6 bg-gray-800 p-1 rounded-lg"
+              onClick={() => handleScoreChange(1)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+        <button className="mb-2 bg-gray-800 p-1 rounded-lg" onClick={()=>setScore(0)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-rotate-ccw"
+          >
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+        </button>
       </div>
       <div className="flex gap-5">
         <div className="flex flex-1 flex-col">

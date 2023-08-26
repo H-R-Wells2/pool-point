@@ -55,7 +55,7 @@ const PlayerCard = ({name}:Props) => {
           </button>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex gap-5">
         <div className="flex flex-1 flex-col">
           <div className="flex w-fit gap-2 mb-2">
             <button

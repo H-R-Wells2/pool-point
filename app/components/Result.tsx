@@ -8,7 +8,6 @@ interface ResultsProps {
 }
 
 const Result: React.FC<ResultsProps> = ({ playerNames, onReset }) => {
-  // Replace this with your actual score data
   const scores = [10, 20, 30, 40];
 
   return (

@@ -22,14 +22,11 @@ const Home: React.FC = () => {
         {playerNames.length === 0 ? (
           <Form onSubmit={handleFormSubmit} />
         ) : (
-          <>
+          <div className="flex flex-col justify-center items-center">
             {playerNames.map((name, index) => (
               <PlayerCard key={index} name={name} />
             ))}
-            <button className="bg-teal-500 text-white px-4 py-2 rounded-lg w-full">
-              Submit
-            </button>
-          </>
+          </div>
         )}
       </div>
       {/* {playerNames.length > 0 && <Result playerNames={playerNames} onReset={handleReset} />} */}

@@ -62,7 +62,10 @@ const PlayerCard = ({ name }: Props) => {
             </button>
           </div>
         </div>
-        <button className="mb-2 bg-gray-800 p-1 rounded-lg" onClick={()=>setScore(0)}>
+        <button
+          className="mb-2 bg-gray-800 p-1 rounded-lg"
+          onClick={() => setScore(0)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

@@ -3,17 +3,12 @@
 import React, { useState } from "react";
 import PlayerCard from "./components/PlayerCard";
 import Form from "./components/Form";
-import Result from "./components/Result";
 
 const Home: React.FC = () => {
   const [playerNames, setPlayerNames] = useState<string[]>([]);
 
   const handleFormSubmit = (names: string[]) => {
     setPlayerNames(names);
-  };
-
-  const handleReset = () => {
-    setPlayerNames([]);
   };
 
   return (
@@ -29,7 +24,6 @@ const Home: React.FC = () => {
           </div>
         )}
       </div>
-      {/* {playerNames.length > 0 && <Result playerNames={playerNames} onReset={handleReset} />} */}
     </div>
   );
 };

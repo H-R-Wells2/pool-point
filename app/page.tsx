@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import PlayerCard from "./components/PlayerCard";
-import Form from "./components/Form";
+import PlayerCard from "../components/PlayerCard";
+import Form from "../components/Form";
 
 const Home: React.FC = () => {
   const [playerNames, setPlayerNames] = useState<string[]>([]);

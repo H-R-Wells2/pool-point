@@ -3,11 +3,14 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true
     },
-}
-
-module.exports = {
-    nextConfig,
     headers: {
         'Overscroll-Behavior': 'none',
-      },
+    },
+    experimental: {
+        esmExternals: "loose",
+        serverActions: true,
+        serverComponentsExternalPackages: ["mongoose"],
+    },
 }
+
+module.exports = nextConfig

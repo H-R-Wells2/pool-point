@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    -webkit-overscroll-behavior: none;
-    -moz-overscroll-behavior: none;
-    overscroll-behavior: none;
-  }
+  -webkit-overscroll-behavior: none;
+  -moz-overscroll-behavior: none;
+  overscroll-behavior: none;
+}

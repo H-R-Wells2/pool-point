@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import PlayerCard from "../components/PlayerCard";
 import Form from "../components/Form";
+import ResultCard from "@/components/ResultCard";
+import { createResult } from "@/lib/actions/result.actions";
 
-const Home: React.FC = () => {
+const Home = () => {
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [playerScores, setPlayerScores] = useState<{ [key: string]: number }>(
     {}
@@ -20,6 +22,17 @@ const Home: React.FC = () => {
 
   const toggleResultCard = () => {
     setShowResultCard(!showResultCard);
+  };
+
+  const submitResult = async () => {
+    const playersData = playerNames.map((name) => ({
+      playerName: name,
+      score: playerScores[name],
+    }));
+
+    await createResult({
+      players: playersData,
+    });
   };
 
   return (
@@ -46,26 +59,18 @@ const Home: React.FC = () => {
               >
                 Show Results
               </button>
-              <button className="mt-3 bg-teal-500 text-white px-4 py-2 rounded-lg">
-                New Game
+              <button
+                onClick={submitResult}
+                className="mt-3 bg-teal-500 text-white px-4 py-2 rounded-lg"
+              >
+                Submit Result
               </button>
             </div>
           </div>
         )}
 
         {showResultCard && (
-          <div className="flex flex-col justify-center items-center my-6 bg-slate-700 rounded-lg p-2 pt-0">
-            <h2 className="text-xl font-semibold mt-4 border-b-2 w-full text-center">
-              Results
-            </h2>
-            {playerNames.map((name, index) => (
-              <div key={index} className="mt-2">
-                <p>
-                  {name}: {playerScores[name]}
-                </p>
-              </div>
-            ))}
-          </div>
+          <ResultCard playerNames={playerNames} playerScores={playerScores} />
         )}
       </div>
     </div>

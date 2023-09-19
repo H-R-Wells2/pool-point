@@ -1,14 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const resultSchema = new mongoose.Schema({
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  time: {
-    type: String,
-    required: true,
-  },
   players: [
     {
       playerName: {
@@ -21,8 +13,12 @@ const resultSchema = new mongoose.Schema({
       },
     },
   ],
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const Result = mongoose.models.Result || mongoose.model('Result', resultSchema);
+const Result = mongoose.models.Result || mongoose.model("Result", resultSchema);
 
-module.exports = Result;
+export default Result;

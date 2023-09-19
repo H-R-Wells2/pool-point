@@ -4,14 +4,15 @@ import { useState } from "react";
 
 interface Props {
   name: string;
+  score: number;
+  setScore: (score: number) => void;
 }
 
-const PlayerCard = ({ name }: Props) => {
-  const [score, setScore] = useState(0);
-
+const PlayerCard = ({ name, score, setScore }: Props) => {
   const handleScoreChange = (amount: number) => {
     setScore(score + amount);
   };
+
 
   return (
     <div className="my-3 bg-slate-700 rounded-lg p-4 max-w-sm">

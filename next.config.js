@@ -3,9 +3,6 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true
     },
-    headers: {
-        'Overscroll-Behavior': 'none',
-    },
     experimental: {
         esmExternals: "loose",
         serverActions: true,

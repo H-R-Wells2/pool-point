@@ -6,6 +6,7 @@ import Form from "../components/Form";
 import ResultCard from "@/components/ResultCard";
 import { createResult } from "@/lib/actions/result.actions";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [playerNames, setPlayerNames] = useState<string[]>([]);
@@ -31,9 +32,16 @@ const Home = () => {
       score: playerScores[name],
     }));
 
-    await createResult({
-      players: playersData,
-    });
+    await toast.promise(
+      createResult({
+        players: playersData,
+      }),
+      {
+        pending: "Submitting Points...",
+        success: "Points submitted successfully!",
+        error: "Error submitting points. Please try again.",
+      }
+    );
   };
 
   return (
@@ -53,7 +61,7 @@ const Home = () => {
                 }
               />
             ))}
-            <div className="flex gap-3">
+            <div className="flex gap-5">
               <button
                 onClick={toggleResultCard}
                 className="mt-3 bg-teal-500 text-white px-4 py-2 rounded-lg"
@@ -69,12 +77,13 @@ const Home = () => {
                 </AlertDialog.Trigger>
                 <AlertDialog.Portal>
                   <AlertDialog.Overlay className="bg-black opacity-50 data-[state=open]:animate-overlayShow fixed inset-0" />
-                  <AlertDialog.Content className="fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-slate-700 p-[25px] ">
+                  <AlertDialog.Content className="fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-slate-700 p-[25px] shadow-[0px_0px_15px_2px] shadow-teal-300">
                     <AlertDialog.Title className=" m-0 text-[17px] font-medium">
                       Are you sure?
                     </AlertDialog.Title>
-                    <AlertDialog.Description className="mt-4 mb-5 text-[15px] leading-normal">
-                      Your score will be saved in PoolPoint
+                    <AlertDialog.Description className="text-slate-300 mt-4 mb-5 text-[15px] leading-normal">
+                      Your score will be saved in PoolPoint. Submit to save your
+                      points
                     </AlertDialog.Description>
                     <div className="flex justify-end gap-[25px] items-center">
                       <AlertDialog.Cancel asChild>

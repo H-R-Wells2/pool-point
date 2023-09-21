@@ -6,10 +6,11 @@ import { useRouter } from "next/navigation";
 
 type Props = {};
 
-const router = useRouter();
 
 const page = (props: Props) => {
-
+  
+  const router = useRouter();
+  
   const handleSubmit = () => {
     router.push("/game");
   };

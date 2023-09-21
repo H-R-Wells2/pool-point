@@ -8,7 +8,7 @@ import { createResult } from "@/lib/actions/result.actions";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { toast } from "react-toastify";
 
-const game = () => {
+const page = () => {
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [playerScores, setPlayerScores] = useState<{ [key: string]: number }>(
     {}
@@ -110,4 +110,4 @@ const game = () => {
   );
 };
 
-export default game;
+export default page;

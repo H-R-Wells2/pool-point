@@ -7,6 +7,7 @@ import ResultCard from "@/components/ResultCard";
 import { createResult } from "@/lib/actions/result.actions";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { toast } from "react-toastify";
+import { useRouter } from 'next/navigation';
 
 const Game = () => {
   const [playerNames, setPlayerNames] = useState<string[]>([]);
@@ -26,6 +27,8 @@ const Game = () => {
     setShowResultCard(!showResultCard);
   };
 
+  const router = useRouter();
+
   const submitResult = async () => {
     const playersData = playerNames.map((name) => ({
       playerName: name,
@@ -40,8 +43,13 @@ const Game = () => {
         pending: "Submitting Points...",
         success: "Points submitted successfully!",
         error: "Error submitting points. Please try again.",
+      },
+      {
+        autoClose: 2000
       }
     );
+
+    await router.push('/results')
   };
 
   return (
@@ -61,14 +69,10 @@ const Game = () => {
                 }
               />
             ))}
-            <div className="flex gap-5">
-              <button onClick={toggleResultCard} className="mt-3 btn-primary">
-                Show Result
-              </button>
-
+            <div className="flex w-full justify-center">
               <AlertDialog.Root>
                 <AlertDialog.Trigger asChild>
-                  <button className="mt-3 btn-primary">Submit result</button>
+                  <button className="mt-3 btn-primary mx-1 max-w-[350px] flex w-full justify-center">Submit result</button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Portal>
                   <AlertDialog.Overlay className="bg-black opacity-50 data-[state=open]:animate-overlayShow fixed inset-0 transition-all duration-300" />

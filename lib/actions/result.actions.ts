@@ -26,3 +26,15 @@ export async function createResult({ players }: Params) {
     throw new Error("Failed to create result");
   }
 }
+
+export async function fetchAllResults() {
+  try {
+    connectToDb();
+
+    const results = await Result.find().sort({ date: "desc" });
+
+    return results;
+  } catch (error: any) {
+    throw new Error("Failed to fetch results");
+  }
+}

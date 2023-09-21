@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 type Props = {};
 
 
-const page = (props: Props) => {
-  
+const PlayerDatails = (props: Props) => {
+
   const router = useRouter();
   
   const handleSubmit = () => {
@@ -22,4 +22,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default PlayerDatails;

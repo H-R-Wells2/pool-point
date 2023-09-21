@@ -25,7 +25,7 @@ const Results = async () => {
   return (
     <div className="flex flex-col">
         {resultsData.map((result) => (
-          <div className="bg-slate-700 mx-6 my-3 p-5 rounded-lg ">
+          <div key={result._id} className="bg-slate-700 mx-6 my-3 p-5 rounded-lg ">
             <div className="mb-5 flex items-center justify-start">
               <p className="text-xs text-gray-300">
                 {formatDateString(result.date)}
@@ -33,7 +33,7 @@ const Results = async () => {
             </div>
             <div className="flex flex-col">
               {result.players.map((player: any) => (
-                <div className="flex self-center justify-between w-[50%]">
+                <div key={result._id} className="flex self-center justify-between w-[50%]">
                   <h1>{player.playerName}:</h1>
                   <h1>{player.score}</h1>
                 </div>

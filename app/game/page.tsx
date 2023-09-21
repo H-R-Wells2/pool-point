@@ -12,7 +12,8 @@ import { useResultContext } from "@/context/resultContext";
 const Game = () => {
   const router = useRouter();
 
-  const [playerNames, setPlayerNames, playerScores, setPlayerScores] = useResultContext();
+  const [playerNames, setPlayerNames, playerScores, setPlayerScores] =
+    useResultContext();
 
   const handleFormSubmit = (names: string[]) => {
     setPlayerNames(names);
@@ -41,8 +42,8 @@ const Game = () => {
       }
     );
 
-    await setPlayerNames([])
-    await setPlayerScores({})
+    await setPlayerNames([]);
+    await setPlayerScores({});
 
     await router.push("/results");
   };

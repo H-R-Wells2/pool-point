@@ -1,23 +1,60 @@
 import React from "react";
+import { MdDeleteOutline } from "react-icons/md";
 
-type ResultCardProps = {
-  playerNames: string[];
-  playerScores: { [key: string]: number };
-};
+interface ResultCardProps {
+  result: {
+    date: string;
+    players: {
+      playerName: string;
+      score: number;
+      _id: {
+        $oid: string;
+      };
+    }[];
+  };
+  // onDelete: (resultId: string) => void;
+}
 
-const ResultCard = ({ playerNames, playerScores }: ResultCardProps) => {
+const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
+
+
+  const formatDateString = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString(undefined, options);
+
+    const time = date.toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+
+    return `${formattedDate} - ${time}`;
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center my-6 bg-slate-700 rounded-lg p-2 pt-0">
-      <h2 className="text-xl font-semibold mt-4 border-b-2 w-full text-center">
-        Results
-      </h2>
-      {playerNames.map((name, index) => (
-        <div key={index} className="mt-2">
-          <p>
-            {name}: {playerScores[name]}
-          </p>
-        </div>
-      ))}
+    <div className="bg-slate-700 mx-6 mb-4 p-5 rounded-lg">
+      <div className="mb-5 flex items-center justify-between text-gray-300">
+        <p className="text-xs">{formatDateString(result.date)}</p>
+        {/* <button>
+          <MdDeleteOutline className="w-6 h-6" />
+        </button=> */}
+      </div>
+      <div className="flex flex-col">
+        {result.players.map((player) => (
+          <div
+            key={player._id.$oid}
+            className="flex self-center justify-between w-[50%]"
+          >
+            <h1>{player.playerName}:</h1>
+            <h1>{player.score}</h1>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

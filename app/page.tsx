@@ -10,11 +10,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const Home = () => {
-  
-
   return (
     <div className="flex justify-center items-center h-[80vh]">
-      <Link href={'/game'} className="btn-primary">
+      <Link href={"/game"} className="btn-primary">
         New Game
       </Link>
     </div>

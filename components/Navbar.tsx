@@ -20,7 +20,7 @@ const Navbar = () => {
             </h2>
           </Link>
           <div>
-            <Link href={"/login"} className="text-xl font-medium">Login</Link>
+            {/* <Link href={"/login"} className="text-xl font-medium">Login</Link> */}
           </div>
         </div>
       </div>

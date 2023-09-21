@@ -62,18 +62,13 @@ const game = () => {
               />
             ))}
             <div className="flex gap-5">
-              <button
-                onClick={toggleResultCard}
-                className="mt-3 btn-primary"
-              >
+              <button onClick={toggleResultCard} className="mt-3 btn-primary">
                 Show Result
               </button>
 
               <AlertDialog.Root>
                 <AlertDialog.Trigger asChild>
-                  <button className="mt-3 btn-primary">
-                    Submit result
-                  </button>
+                  <button className="mt-3 btn-primary">Submit result</button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Portal>
                   <AlertDialog.Overlay className="bg-black opacity-50 data-[state=open]:animate-overlayShow fixed inset-0 transition-all duration-300" />

@@ -1,26 +1,24 @@
-"use client"
+"use client";
 
+import PlayersForm from "@/components/PlayersForm";
+import React from "react";
+import { useRouter } from "next/navigation";
 
-import PlayersForm from '@/components/PlayersForm'
-import React from 'react'
-import {useRouter} from 'next/navigation'
+type Props = {};
 
-
-type Props = {}
+const router = useRouter();
 
 const page = (props: Props) => {
-    const router = useRouter() 
-    
 
-    const handleSubmit =() => {
-        router.push('/game')
-    }
+  const handleSubmit = () => {
+    router.push("/game");
+  };
 
   return (
     <div>
-        <PlayersForm onSubmit={handleSubmit}/>
+      <PlayersForm onSubmit={handleSubmit} />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

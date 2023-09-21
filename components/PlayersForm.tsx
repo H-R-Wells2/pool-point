@@ -4,7 +4,7 @@ interface FormProps {
   onSubmit: (names: string[]) => void;
 }
 
-const Form: React.FC<FormProps> = ({ onSubmit }) => {
+const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
   const [names, setNames] = useState<string[]>(["", "", "", ""]);
 
   const handleChange = (index: number, value: string) => {
@@ -55,4 +55,4 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
   );
 };
 
-export default Form;
+export default PlayersForm;

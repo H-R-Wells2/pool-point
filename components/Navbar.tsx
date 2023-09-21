@@ -15,10 +15,13 @@ const Navbar = () => {
                 className="rounded-full object-cover shadow-2xl"
               />
             </div>
-            <h1 className="text-2xl font-medium">
+            <h2 className="text-2xl font-medium">
               Pool<span className="text-teal-500">Point</span>
-            </h1>
+            </h2>
           </Link>
+          <div>
+            <Link href={"/login"} className="text-xl font-medium">Login</Link>
+          </div>
         </div>
       </div>
     </div>

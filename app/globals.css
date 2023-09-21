@@ -7,3 +7,7 @@ body {
   -moz-overscroll-behavior: none;
   overscroll-behavior: none;
 }
+
+.btn-primary {
+  @apply bg-teal-500 text-white px-4 py-2 rounded-lg;
+}

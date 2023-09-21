@@ -1,19 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
-// import PlayerCard from "../components/PlayerCard";
-// import PlayersForm from "../components/PlayersForm";
-// import ResultCard from "@/components/ResultCard";
-// import { createResult } from "@/lib/actions/result.actions";
-// import * as AlertDialog from "@radix-ui/react-alert-dialog";
-// import { toast } from "react-toastify";
+import React from "react";
 import Link from "next/link";
+import { useResultContext } from "@/context/resultContext";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const [playerNames, setPlayerNames, playerScores, setPlayerScores] =
+    useResultContext();
+  const router = useRouter();
+
+  const newGame = () => {
+    setPlayerNames([]);
+    setPlayerScores({});
+    router.push("/game");
+  };
+
   return (
-    <div className="flex justify-center items-center h-[80vh]">
-      <Link href={"/game"} className="btn-primary">
+    <div className="flex flex-col gap-3 justify-center items-center h-[80vh]">
+      {playerNames.length > 0 && (
+        <Link href={"/game"} className="btn-primary text-center w-1/2">
+          Resume
+        </Link>
+      )}
+      <button onClick={newGame} className="btn-primary w-1/2">
         New Game
+      </button>
+      <Link href={"/results"} className="btn-primary text-center w-1/2">
+        Results
       </Link>
     </div>
   );

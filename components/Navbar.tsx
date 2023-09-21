@@ -19,9 +19,6 @@ const Navbar = () => {
               Pool<span className="text-teal-500">Point</span>
             </h2>
           </Link>
-          <div>
-            {/* <Link href={"/login"} className="text-xl font-medium">Login</Link> */}
-          </div>
         </div>
       </div>
     </div>

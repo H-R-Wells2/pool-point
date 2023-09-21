@@ -1,20 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import PlayerCard from "@/components/PlayerCard";
 import PlayersForm from "@/components/PlayersForm";
-import ResultCard from "@/components/ResultCard";
 import { createResult } from "@/lib/actions/result.actions";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { toast } from "react-toastify";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import { useResultContext } from "@/context/resultContext";
 
 const Game = () => {
-  const [playerNames, setPlayerNames] = useState<string[]>([]);
-  const [playerScores, setPlayerScores] = useState<{ [key: string]: number }>(
-    {}
-  );
-  const [showResultCard, setShowResultCard] = useState(false);
+  const router = useRouter();
+
+  const [playerNames, setPlayerNames, playerScores, setPlayerScores] = useResultContext();
 
   const handleFormSubmit = (names: string[]) => {
     setPlayerNames(names);
@@ -22,12 +20,6 @@ const Game = () => {
     names.forEach((name) => (initialScores[name] = 0));
     setPlayerScores(initialScores);
   };
-
-  const toggleResultCard = () => {
-    setShowResultCard(!showResultCard);
-  };
-
-  const router = useRouter();
 
   const submitResult = async () => {
     const playersData = playerNames.map((name) => ({
@@ -45,11 +37,14 @@ const Game = () => {
         error: "Error submitting points. Please try again.",
       },
       {
-        autoClose: 2000
+        autoClose: 2000,
       }
     );
 
-    await router.push('/results')
+    await setPlayerNames([])
+    await setPlayerScores({})
+
+    await router.push("/results");
   };
 
   return (
@@ -72,7 +67,9 @@ const Game = () => {
             <div className="flex w-full justify-center">
               <AlertDialog.Root>
                 <AlertDialog.Trigger asChild>
-                  <button className="mt-3 btn-primary mx-1 max-w-[350px] flex w-full justify-center">Submit result</button>
+                  <button className="mt-3 btn-primary mx-1 max-w-[350px] flex w-full justify-center">
+                    Submit result
+                  </button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Portal>
                   <AlertDialog.Overlay className="bg-black opacity-50 data-[state=open]:animate-overlayShow fixed inset-0 transition-all duration-300" />
@@ -104,10 +101,6 @@ const Game = () => {
               </AlertDialog.Root>
             </div>
           </div>
-        )}
-
-        {showResultCard && (
-          <ResultCard playerNames={playerNames} playerScores={playerScores} />
         )}
       </div>
     </div>

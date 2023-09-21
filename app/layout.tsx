@@ -2,9 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "../components/Navbar";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ResultProvider } from "@/context/resultContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
         <Navbar />
         <ToastContainer theme="dark" />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {children}
+          <ResultProvider>{children}</ResultProvider>
         </main>
       </body>
     </html>

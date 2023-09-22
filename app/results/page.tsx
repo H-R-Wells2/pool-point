@@ -2,7 +2,7 @@ import ResultCard from "@/components/ResultCard";
 import { fetchAllResults } from "@/lib/actions/result.actions";
 
 const Results = async () => {
-  const resultsData = await fetchAllResults();
+  let resultsData = await fetchAllResults();
 
   return (
     <div>

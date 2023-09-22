@@ -32,7 +32,6 @@ export async function fetchAllResults() {
     connectToDb();
 
     const results = await Result.find().sort({ date: "desc" });
-    console.log(results)
 
     return results;
   } catch (error: any) {

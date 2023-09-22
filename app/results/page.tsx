@@ -1,8 +1,12 @@
 import ResultCard from "@/components/ResultCard";
 import { fetchAllResults } from "@/lib/actions/result.actions";
 
+export const revalidate = 0;
+
 const page = async () => {
+
   const resultsData = await fetchAllResults();
+
 
   return (
     <div>

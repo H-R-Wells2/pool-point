@@ -5,7 +5,6 @@ const nextConfig = {
         ignoreBuildErrors: true
     },
     experimental: {
-        esmExternals: "loose",
         serverActions: true,
         serverComponentsExternalPackages: ["mongoose"],
     },

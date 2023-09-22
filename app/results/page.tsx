@@ -1,8 +1,8 @@
 import ResultCard from "@/components/ResultCard";
 import { fetchAllResults } from "@/lib/actions/result.actions";
 
-const Results = async () => {
-  let resultsData = await fetchAllResults();
+const page = async () => {
+  const resultsData = await fetchAllResults();
 
   return (
     <div>
@@ -19,4 +19,4 @@ const Results = async () => {
   );
 };
 
-export default Results;
+export default page;

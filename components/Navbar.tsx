@@ -3,13 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
-import {GrRefresh} from 'react-icons/gr'
-import { MdDeleteOutline, MdRefresh } from "react-icons/md";
+import { MdRefresh } from "react-icons/md";
 
 const Navbar = () => {
 
   const pathname = usePathname();
-  // console.log(pathname)
   const router = useRouter();
   const handleRefresh = () => {
     router.replace('/results')

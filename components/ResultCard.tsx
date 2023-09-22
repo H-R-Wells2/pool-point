@@ -24,12 +24,14 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
       year: "numeric",
       month: "short",
       day: "numeric",
+      timeZone: "Asia/Kolkata"
     };
 
     const formattedDate = date.toLocaleDateString(undefined, options);
     const time = date.toLocaleTimeString([], {
       hour: "numeric",
       minute: "2-digit",
+      timeZone: "Asia/Kolkata"
     });
 
     return `${formattedDate} - ${time}`;

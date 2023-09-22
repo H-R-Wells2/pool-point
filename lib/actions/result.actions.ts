@@ -38,3 +38,19 @@ export async function fetchAllResults() {
     throw new Error("Failed to fetch results");
   }
 }
+
+export async function deleteResultById(resultId: string) {
+  try {
+    connectToDb();
+
+    const deletedResult = await Result.findByIdAndRemove(resultId);
+
+    if (!deletedResult) {
+      throw new Error("Result not found");
+    }
+
+    return { success: true, message: "Result deleted successfully" };
+  } catch (error: any) {
+    throw new Error(`Failed to delete result: ${error.message}`);
+  }
+}

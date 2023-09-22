@@ -1,8 +1,10 @@
-import React from "react";
-// import { MdDeleteOutline } from "react-icons/md";
+import DeleteResult from "./DeleteResult";
 
 interface ResultCardProps {
   result: {
+    _id: {
+      $oid: string;
+    }
     date: string;
     players: {
       playerName: string;
@@ -12,11 +14,13 @@ interface ResultCardProps {
       };
     }[];
   };
+  pathname: string;
 }
 
-const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
+const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
 
 
+  
   const formatDateString = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -39,9 +43,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
     <div className="bg-slate-700 mx-6 mb-4 p-5 rounded-lg">
       <div className="mb-5 flex items-center justify-between text-gray-300">
         <p className="text-xs">{formatDateString(result.date)}</p>
-        {/* <button>
-          <MdDeleteOutline className="w-6 h-6" />
-        </button=> */}
+        {pathname === '/admin' && (
+          <DeleteResult resultId={JSON.stringify(result._id)} />
+        )}
       </div>
       <div className="flex flex-col">
         {result.players.map((player) => (

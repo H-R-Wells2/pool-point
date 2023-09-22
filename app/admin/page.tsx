@@ -1,8 +1,9 @@
 import ResultCard from "@/components/ResultCard";
 import { fetchAllResults } from "@/lib/actions/result.actions";
 
-const Results = async () => {
+const AdminPage = async () => {
   const resultsData = await fetchAllResults();
+
 
   return (
     <div>
@@ -11,7 +12,7 @@ const Results = async () => {
           <ResultCard
             key={result._id.$oid}
             result={result}
-            pathname="/results"
+            pathname="/admin"
           />
         ))}
       </div>
@@ -19,4 +20,4 @@ const Results = async () => {
   );
 };
 
-export default Results;
+export default AdminPage;

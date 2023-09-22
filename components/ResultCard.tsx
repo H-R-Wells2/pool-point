@@ -4,7 +4,7 @@ interface ResultCardProps {
   result: {
     _id: {
       $oid: string;
-    }
+    };
     date: string;
     players: {
       playerName: string;
@@ -18,9 +18,6 @@ interface ResultCardProps {
 }
 
 const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
-
-
-  
   const formatDateString = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -43,7 +40,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
     <div className="bg-slate-700 mx-6 mb-4 p-5 rounded-lg">
       <div className="mb-5 flex items-center justify-between text-gray-300">
         <p className="text-xs">{formatDateString(result.date)}</p>
-        {pathname === '/admin' && (
+        {pathname === "/admin" && (
           <DeleteResult resultId={JSON.stringify(result._id)} />
         )}
       </div>

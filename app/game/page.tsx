@@ -42,10 +42,10 @@ const Game = () => {
       }
     );
 
-    await setPlayerNames([]);
-    await setPlayerScores({});
+    setPlayerNames([]);
+    setPlayerScores({});
 
-    await router.push("/results");
+    router.push("/results");
   };
 
   return (

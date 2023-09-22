@@ -17,7 +17,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3 justify-center items-center h-[80vh]">
+    <div className="flex flex-col gap-3 justify-center items-center h-[90vh]">
       <button onClick={newGame} className="btn-primary w-1/2">
         New Game
       </button>

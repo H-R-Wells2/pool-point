@@ -9,7 +9,7 @@ const page = async () => {
 
 
   return (
-    <div>
+    <div className="my-20">
       <div className="flex flex-col mb-3 mt-6">
         {resultsData.map((result) => (
           <ResultCard

@@ -49,8 +49,8 @@ const Game = () => {
   };
 
   return (
-    <div className="flex flex-col mt-5">
-      <div className="mb-20">
+    <div className="flex flex-col">
+      <div className="mt-20 mb-10">
         {playerNames.length === 0 ? (
           <PlayersForm onSubmit={handleFormSubmit} />
         ) : (

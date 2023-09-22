@@ -11,6 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Pool Point Counter",
   description: "Pool Point Counter by Parivartan team",
+  manifest: '/manifest.json',
+  themeColor: '#14B8A6'
 };
 
 export default function RootLayout({

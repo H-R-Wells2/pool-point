@@ -1,5 +1,5 @@
 import React from "react";
-import { MdDeleteOutline } from "react-icons/md";
+// import { MdDeleteOutline } from "react-icons/md";
 
 interface ResultCardProps {
   result: {
@@ -12,7 +12,6 @@ interface ResultCardProps {
       };
     }[];
   };
-  // onDelete: (resultId: string) => void;
 }
 
 const ResultCard: React.FC<ResultCardProps> = ({ result }) => {

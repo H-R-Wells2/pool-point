@@ -18,14 +18,14 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-3 justify-center items-center h-[80vh]">
+      <button onClick={newGame} className="btn-primary w-1/2">
+        New Game
+      </button>
       {playerNames.length > 0 && (
         <Link href={"/game"} className="btn-primary text-center w-1/2">
           Resume
         </Link>
       )}
-      <button onClick={newGame} className="btn-primary w-1/2">
-        New Game
-      </button>
       <Link href={"/results"} className="btn-primary text-center w-1/2">
         Results
       </Link>

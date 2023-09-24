@@ -34,8 +34,8 @@ const DateFilter = (props: Props) => {
         </span>
       </button>
       <div className={`flex flex-col self-end border-teal-300 border p-3 rounded-lg gap-2 absolute top-32 bg-gray-800 mr-2 transition-all duration-300 ease-in-out animate-dropdown ${visibility}`}>
-        {dates.map((date)=>(
-            <button className="border-b border-teal-300 ">
+        {dates.map((date, index)=>(
+            <button key={index} className="border-b border-teal-300 ">
                 {date}
             </button>
         ))}

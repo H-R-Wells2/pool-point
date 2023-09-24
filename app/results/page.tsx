@@ -1,3 +1,4 @@
+import DateFilter from "@/components/DateFilter";
 import ResultCard from "@/components/ResultCard";
 import { fetchAllResults } from "@/lib/actions/result.actions";
 
@@ -11,6 +12,7 @@ const page = async () => {
   return (
     <div className="my-20">
       <div className="flex flex-col mb-3 mt-6">
+        <DateFilter />
         {resultsData.map((result) => (
           <ResultCard
             key={result._id.$oid}

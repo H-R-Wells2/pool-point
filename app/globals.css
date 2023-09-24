@@ -24,3 +24,20 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   display: none;
 }
+
+.animate-dropdown {
+  animation: growDown 300ms ease-in-out;
+  transform-origin: top center;
+}
+
+@keyframes growDown {
+  0% {
+      transform: scaleY(0)
+  }
+  50% {
+      transform: scaleY(1.1)
+  }
+  100% {
+      transform: scaleY(1)
+  }
+}

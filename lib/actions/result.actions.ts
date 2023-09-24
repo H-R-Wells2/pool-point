@@ -10,6 +10,7 @@ interface Params {
   }>;
 }
 
+// to create result
 export async function createResult({ players }: Params) {
   try {
     connectToDb();
@@ -27,6 +28,7 @@ export async function createResult({ players }: Params) {
   }
 }
 
+// to fetch results
 export async function fetchAllResults() {
   try {
     connectToDb();
@@ -39,6 +41,29 @@ export async function fetchAllResults() {
     throw new Error("Failed to fetch results");
   }
 }
+
+
+// to fetch results by date
+export async function fetchResultsByDate(date: Date) {
+  try {
+    connectToDb();
+
+    const query = {
+      date: {
+        $gte: new Date(date),
+        $lt: new Date(date.getTime() + 24 * 60 * 60 * 1000)
+      }
+    };
+
+    const results = await Result.find(query).sort({ date: "desc" });
+    console.log("Fetched results of", date);
+
+    return results;
+  } catch (error) {
+    throw new Error("Failed to fetch results by date");
+  }
+}
+
 
 export async function deleteResultById(resultId: string) {
   try {

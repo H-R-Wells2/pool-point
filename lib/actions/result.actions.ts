@@ -34,14 +34,13 @@ export async function fetchAllResults() {
     connectToDb();
 
     const results = await Result.find().sort({ date: "desc" });
-    console.log("updated results")
+    console.log("updated results");
 
     return results;
   } catch (error: any) {
     throw new Error("Failed to fetch results");
   }
 }
-
 
 // to fetch results by date
 export async function fetchResultsByDate(date: Date) {
@@ -51,19 +50,18 @@ export async function fetchResultsByDate(date: Date) {
     const query = {
       date: {
         $gte: new Date(date),
-        $lt: new Date(date.getTime() + 24 * 60 * 60 * 1000)
-      }
+        $lt: new Date(date.getTime() + 24 * 60 * 60 * 1000),
+      },
     };
 
     const results = await Result.find(query).sort({ date: "desc" });
-    console.log("Fetched results of", date);
 
+    // console.log("Fetched results of", date);
     return results;
   } catch (error) {
     throw new Error("Failed to fetch results by date");
   }
 }
-
 
 export async function deleteResultById(resultId: string) {
   try {

@@ -5,7 +5,6 @@ import {
   fetchResultsByDate,
 } from "@/lib/actions/result.actions";
 
-
 export const revalidate = 0;
 
 export const dynamic = "force-dynamic";
@@ -14,7 +13,7 @@ const fetchResults = async (date: string) => {
   if (!date) return null;
 
   const data = await fetchResultsByDate(new Date(date));
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -46,9 +45,6 @@ const page = async ({
   const uniqueDates = Array.from(
     new Set(resultsData.map((result) => formatDate(result.date)))
   );
-
-  const hardcodedDate = "2023-09-24";
-  // const dateData = await fetchResultsByDate(new Date(hardcodedDate));
 
   return (
     <div className="my-20">

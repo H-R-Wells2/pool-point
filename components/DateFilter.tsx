@@ -1,67 +1,81 @@
 "use client";
 
-import { fetchResultsByDate } from "@/lib/actions/result.actions";
+
 import React, { useState } from "react";
 import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 
-import type { ChangeEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   uniqueDates: string[];
-  selected: string;
 };
 
-const DateFilter = ({ uniqueDates, selected }: Props) => {
+const DateFilter = ({ uniqueDates}: Props) => {
   const options = uniqueDates;
 
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const onSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+  const onSelectDate = (value: string) => {
     const current = new URLSearchParams(searchParams);
-
-    const value = event.target.value.trim();
 
     if (!value) {
       current.delete("selected");
     } else {
-      current.set("selected", event.target.value);
+      current.set("selected", value);
     }
 
     const search = current.toString();
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
+
+    toggleVisibility();
   };
 
-  // console.log(uniqueDates);
-  const [dates, setDates] = useState(uniqueDates);
+
+  const [visibility, setVisibility] = useState("hidden");
+  const [iconRotate, setIconRotate] = useState("");
+  const toggleVisibility = () => {
+    if (visibility === "hidden") {
+      setVisibility("flex");
+      setIconRotate("-rotate-180");
+    } else {
+      setVisibility("hidden");
+      setIconRotate("");
+    }
+  };
 
   return (
     <div className="mx-6 flex flex-col justify-end">
-      <select
-        value={selected}
-        onChange={onSelect}
-        className="px-4 py-1 mb-3 md:w-52 w-40 self-end justify-center border-2 border-teal-300 rounded-lg flex items-center gap-1 bg-transparent outline-none"
+      <button
+        onClick={toggleVisibility}
+        className="px-4 py-1 mb-3 md:w-52 w-40 self-end justify-center border-2 border-teal-300 rounded-lg flex items-center gap-1"
       >
-        <option
-          value=""
-          className={`border-teal-300 border p-3 rounded-lg gap-2 absolute top-32 bg-gray-800 transition-all duration-300 ease-in-out animate-dropdown md:w-52 w-40`}
+        Dates
+        <span
+          className={`duration-300 transition-all ease-in-out ${iconRotate}`}
         >
-          None
-        </option>
-        {options.map((opt) => (
-          <option
-            key={opt}
-            value={opt}
-            className={`border-teal-300 border p-3 rounded-lg gap-2 absolute top-32 bg-gray-800 transition-all duration-300 ease-in-out animate-dropdown md:w-52 w-40`}
+          <MdOutlineArrowDropDownCircle className="w-5 h-5" />
+        </span>
+      </button>
+
+      <div
+        className={` md:w-52 w-40 flex-col self-end border-teal-300 border p-3 rounded-lg gap-2 absolute top-32 bg-gray-800 transition-all duration-300 ease-in-out animate-dropdown ${visibility}`}
+      >
+        {options.map((date) => (
+          <button
+            key={date}
+            onClick={() => {
+              onSelectDate(date);
+            }}
+            className="border-b border-teal-300 "
           >
-            {opt}
-          </option>
+            {date}
+          </button>
         ))}
-      </select>
+      </div>
     </div>
   );
 };

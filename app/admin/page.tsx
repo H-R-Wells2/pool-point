@@ -48,10 +48,28 @@ const AdminPage = async ({
   return (
     <div className="my-20">
       <div className="flex flex-col mb-3 mt-6">
-        <DateFilter uniqueDates={uniqueDates} selected={selected || ""} />
-        {resultsData.map((result) => (
-          <ResultCard key={result._id.$oid} result={result} pathname="/admin" />
-        ))}
+        <DateFilter uniqueDates={uniqueDates} />
+        {dateData ? (
+          <section>
+            {dateData.map((result) => (
+              <ResultCard
+                key={result._id.$oid}
+                result={result}
+                pathname="/admin"
+              />
+            ))}
+          </section>
+        ) : (
+          <section>
+            {resultsData.map((result) => (
+              <ResultCard
+                key={result._id.$oid}
+                result={result}
+                pathname="/admin"
+              />
+            ))}
+          </section>
+        )}
       </div>
     </div>
   );

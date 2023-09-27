@@ -2,6 +2,8 @@
 
 import Result from "../models/result.model";
 import { connectToDb } from "../mongoose";
+import moment from 'moment-timezone';
+
 
 interface Params {
   players: Array<{
@@ -47,10 +49,12 @@ export async function fetchResultsByDate(date: Date) {
   try {
     connectToDb();
 
+    const kolkataDate = moment(date).tz('Asia/Kolkata');
+
     const query = {
       date: {
-        $gte: new Date(date),
-        $lt: new Date(date.getTime() + 24 * 60 * 60 * 1000),
+        $gte: kolkataDate.toDate(),
+        $lt: kolkataDate.clone().add(1, 'day').toDate(),
       },
     };
 
@@ -63,6 +67,7 @@ export async function fetchResultsByDate(date: Date) {
   }
 }
 
+// to delete result
 export async function deleteResultById(resultId: string) {
   try {
     connectToDb();

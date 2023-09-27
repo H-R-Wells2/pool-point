@@ -16,6 +16,7 @@
     "autoprefixer": "10.4.15",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.15",
+    "moment-timezone": "^0.5.43",
     "mongodb": "^6.1.0",
     "mongoose": "^7.5.2",
     "next": "^13.5.2",

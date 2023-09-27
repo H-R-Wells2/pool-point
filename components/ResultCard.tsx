@@ -46,9 +46,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
         )}
       </div>
       <div className="flex flex-col">
-        {result.players.map((player) => (
+        {result.players.map((player, index) => (
           <div
-            key={player._id.$oid}
+            key={index}
             className="flex self-center justify-between w-[50%]"
           >
             <h1>{player.playerName}:</h1>

@@ -52,7 +52,9 @@ const Game = () => {
     <div className="flex flex-col">
       <div className="mt-20 mb-10">
         {playerNames.length === 0 ? (
-          <PlayersForm onSubmit={handleFormSubmit} />
+          <div className="w-full flex justify-center">
+            <PlayersForm onSubmit={handleFormSubmit} />
+          </div>
         ) : (
           <div className="flex flex-col justify-center items-center">
             {playerNames.map((name, index) => (

@@ -50,7 +50,7 @@ const DateFilter = ({ uniqueDates, selected }: Props) => {
     <div className="mx-6 flex flex-col justify-end">
       <button
         onClick={toggleVisibility}
-        className="px-4 py-1 mb-3 md:w-52 w-40 self-end justify-center border-2 border-teal-300 rounded-lg flex items-center gap-1"
+        className="py-1 mb-3 md:w-52 w-40 self-end justify-center border-2 border-teal-300 rounded-lg flex items-center gap-1"
       >
         {selected ? selected : "Date"}
         <span

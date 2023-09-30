@@ -53,7 +53,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
             key={index}
             className="flex self-center justify-between w-[50%]"
           >
-            <h1>{player.playerName}:</h1>
+            <h1 className="flex justify-between gap-2"><span>{index+1+"."}</span>{player.playerName}:</h1>
             <h1>{player.score}</h1>
           </div>
         ))}

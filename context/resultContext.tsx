@@ -14,8 +14,6 @@ type ResultContextType = [
   setPlayerNames:Dispatch<SetStateAction<string[]>>,
   playerScores:{ [key: string]: number },
   setPlayerScores:Dispatch<SetStateAction<{ [key: string]: number }>>,
-  sortByRank:boolean,
-  setSortByRank:Dispatch<SetStateAction<boolean>>
 ];
 
 const Context = createContext<ResultContextType | undefined>(undefined);
@@ -30,15 +28,12 @@ export function ResultProvider({ children }: ResultProviderProps) {
     {}
   );
 
-  const [sortByRank, setSortByRank] = useState<boolean>(false);
 
   const contextValue: ResultContextType = [
     playerNames,
     setPlayerNames,
     playerScores,
     setPlayerScores,
-    sortByRank,
-    setSortByRank
   ];
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

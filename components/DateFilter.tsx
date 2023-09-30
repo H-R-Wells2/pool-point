@@ -50,7 +50,7 @@ const DateFilter = ({ uniqueDates, selected }: Props) => {
     <div className="mx-6 flex flex-col justify-end">
       <button
         onClick={toggleVisibility}
-        className="py-1 mb-3 md:w-52 w-40 self-end justify-center border-2 border-teal-300 rounded-lg flex items-center gap-1"
+        className="py-1 mb-3 md:w-52 w-32 self-end justify-center border-2 border-teal-300 rounded-lg flex items-center gap-1"
       >
         {selected ? selected : "Date"}
         <span
@@ -61,7 +61,7 @@ const DateFilter = ({ uniqueDates, selected }: Props) => {
       </button>
 
       <div
-        className={` md:w-52 w-40 flex-col self-end border-teal-300 border p-3 rounded-lg gap-2 absolute top-32 bg-gray-800 transition-all duration-300 ease-in-out animate-dropdown ${visibility}`}
+        className={` md:w-52 w-32 flex-col self-end border-teal-300 border p-3 rounded-lg gap-2 absolute top-32 bg-gray-800 transition-all duration-300 ease-in-out animate-dropdown ${visibility}`}
       >
         <button
           onClick={() => {

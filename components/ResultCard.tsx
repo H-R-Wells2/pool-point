@@ -37,6 +37,8 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
     return `${formattedDate} - ${time}`;
   };
 
+  // console.log(result.players.sort((a, b)=>a.score - b.score))
+
   return (
     <div className="bg-slate-700 mx-6 mb-4 p-5 rounded-lg">
       <div className="mb-5 flex items-center justify-between text-gray-300">
@@ -46,7 +48,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
         )}
       </div>
       <div className="flex flex-col">
-        {result.players.map((player, index) => (
+        {result.players.sort((a, b)=>b.score - a.score).map((player, index) => (
           <div
             key={index}
             className="flex self-center justify-between w-[50%]"

@@ -1,5 +1,6 @@
 import DateFilter from "@/components/DateFilter";
 import ResultCard from "@/components/ResultCard";
+import SortFilter from "@/components/SortFilter";
 import {
   fetchAllResults,
   fetchResultsByDate,
@@ -49,7 +50,10 @@ const page = async ({
   return (
     <div className="my-20">
       <div className="flex flex-col mb-3 mt-6">
-        <DateFilter uniqueDates={uniqueDates} selected={selected || ""} />
+        <div className="flex justify-between">
+          <SortFilter />
+          <DateFilter uniqueDates={uniqueDates} selected={selected || ""} />
+        </div>
         {dateData ? (
           <section>
             {dateData.map((result) => (

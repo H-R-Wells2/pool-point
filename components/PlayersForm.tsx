@@ -58,6 +58,8 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
         className="mb-2 p-2 rounded-lg outline-none text-black"
         required
         minLength={3}
+        pattern="[A-Za-z0-9]+" 
+        title="Only alphabets and numbers are allowed (no spaces)"
       />
     ));
   };

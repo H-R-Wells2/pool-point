@@ -2,8 +2,7 @@
 
 import Result from "../models/result.model";
 import { connectToDb } from "../mongoose";
-import moment from 'moment-timezone';
-
+import moment from "moment-timezone";
 
 interface Params {
   players: Array<{
@@ -49,12 +48,12 @@ export async function fetchResultsByDate(date: Date) {
   try {
     connectToDb();
 
-    const kolkataDate = moment(date).tz('Asia/Kolkata');
+    const kolkataDate = moment(date).tz("Asia/Kolkata");
 
     const query = {
       date: {
         $gte: kolkataDate.toDate(),
-        $lt: kolkataDate.clone().add(1, 'day').toDate(),
+        $lt: kolkataDate.clone().add(1, "day").toDate(),
       },
     };
 

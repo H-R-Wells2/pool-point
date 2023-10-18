@@ -20,7 +20,7 @@ function DeleteResult({ resultId }: Props) {
     setAdKey(e.target.value);
   };
 
-  const adminKey = process.env.NEXT_PUBLIC_ADKEY
+  const adminKey = process.env.NEXT_PUBLIC_ADKEY;
 
   const handleDelete = async () => {
     if (adKey === adminKey) {

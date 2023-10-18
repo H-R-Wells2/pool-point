@@ -17,7 +17,9 @@ const AlertForDelete = (props: Props) => {
           className="p-2 my-2 rounded-lg outline-none text-black"
         />
         <div className="flex gap-2 w-full">
-          <button className="border-1 border-white border rounded-lg w-1/2">Cancel</button>
+          <button className="border-1 border-white border rounded-lg w-1/2">
+            Cancel
+          </button>
           <button className="btn-primary w-1/2">Delete</button>
         </div>
       </div>

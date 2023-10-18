@@ -1,6 +1,5 @@
 "use client";
 
-
 interface Props {
   name: string;
   score: number;
@@ -11,7 +10,6 @@ const PlayerCard = ({ name, score, setScore }: Props) => {
   const handleScoreChange = (amount: number) => {
     setScore(score + amount);
   };
-
 
   return (
     <div className="my-3 bg-slate-700 rounded-lg p-4 max-w-sm">

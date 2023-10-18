@@ -10,10 +10,10 @@ import {
 } from "react";
 
 type ResultContextType = [
-  playerNames:string[],
-  setPlayerNames:Dispatch<SetStateAction<string[]>>,
-  playerScores:{ [key: string]: number },
-  setPlayerScores:Dispatch<SetStateAction<{ [key: string]: number }>>,
+  playerNames: string[],
+  setPlayerNames: Dispatch<SetStateAction<string[]>>,
+  playerScores: { [key: string]: number },
+  setPlayerScores: Dispatch<SetStateAction<{ [key: string]: number }>>
 ];
 
 const Context = createContext<ResultContextType | undefined>(undefined);
@@ -27,7 +27,6 @@ export function ResultProvider({ children }: ResultProviderProps) {
   const [playerScores, setPlayerScores] = useState<{ [key: string]: number }>(
     {}
   );
-
 
   const contextValue: ResultContextType = [
     playerNames,

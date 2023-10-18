@@ -24,14 +24,14 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
       year: "numeric",
       month: "short",
       day: "numeric",
-      timeZone: "Asia/Kolkata"
+      timeZone: "Asia/Kolkata",
     };
 
     const formattedDate = date.toLocaleDateString(undefined, options);
     const time = date.toLocaleTimeString([], {
       hour: "numeric",
       minute: "2-digit",
-      timeZone: "Asia/Kolkata"
+      timeZone: "Asia/Kolkata",
     });
 
     return `${formattedDate} - ${time}`;
@@ -48,15 +48,20 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
         )}
       </div>
       <div className="flex flex-col">
-        {result.players.sort((a, b)=>b.score - a.score).map((player, index) => (
-          <div
-            key={index}
-            className="flex self-center justify-between w-[50%]"
-          >
-            <h1 className="flex justify-between gap-2"><span>{index+1+"."}</span>{player.playerName}:</h1>
-            <h1>{player.score}</h1>
-          </div>
-        ))}
+        {result.players
+          .sort((a, b) => b.score - a.score)
+          .map((player, index) => (
+            <div
+              key={index}
+              className="flex self-center justify-between w-[50%]"
+            >
+              <h1 className="flex justify-between gap-2">
+                <span>{index + 1 + "."}</span>
+                {player.playerName}:
+              </h1>
+              <h1>{player.score}</h1>
+            </div>
+          ))}
       </div>
     </div>
   );

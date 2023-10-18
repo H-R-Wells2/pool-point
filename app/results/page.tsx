@@ -38,22 +38,21 @@ function calculatePlayerRanks(data: any): PlayerRank[] {
   }
 
   const playerRanks: PlayerRank = {};
-  
+
   data.forEach((document: Document) => {
     const players = document.players.slice();
-    
+
     players.sort((a, b) => b.score - a.score);
-    
+
     players.forEach((player: Player, index) => {
       const playerName = player.playerName;
       const rank = index + 1;
-      
+
       if (!playerRanks[playerName]) {
         playerRanks[playerName] = 0;
       }
-      
+
       playerRanks[playerName] += rank;
-      // console.log(playerRanks[playerName] + player.playerName);
     });
   });
 
@@ -111,11 +110,11 @@ const page = async ({
                 pathname="/results"
               />
             ))}
-              <div className="text-center text-lg font-semibold mb-4">
-                {selected}
-              </div>
+            <div className="text-center text-lg font-semibold mb-4">
+              {selected}
+            </div>
             <div className="bg-slate-700 border border-teal-300 mx-6 mb-4 p-5 rounded-lg">
-            <div className="text-center text-lg font-semibold mb-2">
+              <div className="text-center text-lg font-semibold mb-2">
                 Result
               </div>
               <div className="flex flex-col justify-center">

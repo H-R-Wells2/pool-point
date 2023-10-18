@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Pool Point Counter",
   description: "Pool Point Counter by Parivartan team",
-  manifest: '/manifest.json',
-  themeColor: '#14B8A6'
+  manifest: "/manifest.json",
+  themeColor: "#14B8A6",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
         className={`${inter.className} bg-gray-900 text-white h-screen selection:bg-gray-900`}
       >
         <Navbar />
-        <ToastContainer theme="dark" autoClose={2000}/>
+        <ToastContainer theme="dark" autoClose={2000} />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ResultProvider>{children}</ResultProvider>
         </main>

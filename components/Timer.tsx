@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from "react";
 
 const Timer = () => {
-  const [seconds, setSeconds] = useState<number>(1800);
+  const [seconds, setSeconds] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds - 1);
+      setSeconds((prevSeconds) => prevSeconds + 1);
     }, 1000);
 
     return () => clearInterval(interval);

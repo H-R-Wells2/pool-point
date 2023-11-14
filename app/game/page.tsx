@@ -8,6 +8,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useResultContext } from "@/context/resultContext";
+import Timer from "@/components/Timer";
 
 const Game = () => {
   const router = useRouter();
@@ -57,6 +58,7 @@ const Game = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center">
+            <Timer />
             {playerNames.map((name, index) => (
               <PlayerCard
                 key={index}

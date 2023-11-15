@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useResultContext } from "@/context/resultContext";
+
 
 interface FormProps {
   onSubmit: (names: string[]) => void;
@@ -40,9 +42,12 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
     });
   };
 
+  const [, , , , , setTimerSeconds] = useResultContext();
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit(names);
+    setTimerSeconds(0);
   };
 
   const renderInputs = () => {

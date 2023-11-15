@@ -13,7 +13,9 @@ type ResultContextType = [
   playerNames: string[],
   setPlayerNames: Dispatch<SetStateAction<string[]>>,
   playerScores: { [key: string]: number },
-  setPlayerScores: Dispatch<SetStateAction<{ [key: string]: number }>>
+  setPlayerScores: Dispatch<SetStateAction<{ [key: string]: number }>>,
+  timerSeconds: number,
+  setTimerSeconds: Dispatch<SetStateAction<number>>,
 ];
 
 const Context = createContext<ResultContextType | undefined>(undefined);
@@ -27,12 +29,15 @@ export function ResultProvider({ children }: ResultProviderProps) {
   const [playerScores, setPlayerScores] = useState<{ [key: string]: number }>(
     {}
   );
+  const [timerSeconds, setTimerSeconds] = useState<number>(0);
 
   const contextValue: ResultContextType = [
     playerNames,
     setPlayerNames,
     playerScores,
     setPlayerScores,
+    timerSeconds,
+    setTimerSeconds,
   ];
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useResultContext } from "@/context/resultContext";
+import React, { useEffect } from "react";
 
 const Timer = () => {
-  const [seconds, setSeconds] = useState<number>(0);
+  const [, , , , timerSeconds, setTimerSeconds] = useResultContext();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds + 1);
+      setTimerSeconds((prevSeconds) => prevSeconds + 1);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [setTimerSeconds]);
 
-  const minutes: number = Math.floor(seconds / 60);
-  const remainingSeconds: number = seconds % 60;
+  const minutes: number = Math.floor(timerSeconds / 60);
+  const remainingSeconds: number = timerSeconds % 60;
 
   return (
     <div className="flex w-full max-w-sm px-4 justify-end">

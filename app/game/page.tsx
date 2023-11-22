@@ -23,6 +23,7 @@ const Game = () => {
     setPlayerScores(initialScores);
   };
 
+
   const submitResult = async () => {
     const playersData = playerNames.map((name) => ({
       playerName: name,

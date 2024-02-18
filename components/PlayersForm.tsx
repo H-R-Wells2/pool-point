@@ -71,7 +71,7 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
 
   return (
     <div className="flex flex-col w-fit justify-center items-center mt-16">
-      <div className="flex w-full text-md rounded-t-lg overflow-hidden">
+      {/* <div className="flex w-full text-md rounded-t-lg overflow-hidden">
         <button onClick={handlePlayers4} className={`${players4} py-2 w-full`}>
           4 Players
         </button>
@@ -84,9 +84,9 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
         <button onClick={handlePlayers2} className={`${players2} py-2 w-full`}>
           2 Players
         </button>
-      </div>
+      </div> */}
       <form
-        className="flex flex-col justify-center items-center w-full bg-gray-700 px-3 py-5 rounded-b-lg"
+        className="flex flex-col justify-center items-center w-full bg-gray-700 px-3 py-5 rounded-lg"
         onSubmit={handleSubmit}
       >
         {renderInputs()}

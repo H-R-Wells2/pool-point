@@ -5,13 +5,13 @@ import Navbar from "../components/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ResultProvider } from "@/context/resultContext";
-import type { Viewport } from 'next'
+import type { Viewport } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
-  themeColor: '#14B8A6',
-}
+  themeColor: "#14B8A6",
+};
 
 export const metadata: Metadata = {
   title: "Pool Point Counter",

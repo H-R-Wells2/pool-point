@@ -139,56 +139,64 @@ const page = async ({
       <div className="flex flex-col mb-3 mt-6">
         <DateFilter uniqueDates={uniqueDates} selected={selected || ""} />
         {dateData ? (
-          <section>
-            {dateData.map((result) => (
-              <ResultCard
-                key={result._id.$oid}
-                result={result}
-                pathname="/results"
-              />
-            ))}
-            <div className="text-center text-lg font-semibold mb-4">
-              {selected}
-            </div>
-            <div className="bg-slate-700 border border-teal-300 mx-6 mb-4 p-5 rounded-lg">
-              <div className="text-center text-lg font-semibold mb-2">
-                Result
-              </div>
-              <div className="flex flex-col justify-center">
-                {dateData[0].players[0].amount
-                  ? playerAmounts
-                      .sort(
-                        (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
-                      )
-                      .map((rank) =>
-                        Object.keys(rank).map((playerName) => (
-                          <div
-                            className="flex self-center justify-between w-[50%]"
-                            key={playerName}
-                          >
-                            <h1>{playerName}:</h1>
-                            <h1>{rank[playerName]}</h1>
-                          </div>
-                        ))
-                      )
-                  : playerRanks
-                      .sort(
-                        (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
-                      )
-                      .map((rank) =>
-                        Object.keys(rank).map((playerName) => (
-                          <div
-                            className="flex self-center justify-between w-[50%]"
-                            key={playerName}
-                          >
-                            <h1>{playerName}:</h1>
-                            <h1>{rank[playerName] * 10}</h1>
-                          </div>
-                        ))
-                      )}
-              </div>
-            </div>
-          </section>
+          <>
+            {dateData[0] ? (
+              <section>
+                {dateData.map((result) => (
+                  <ResultCard
+                    key={result._id.$oid}
+                    result={result}
+                    pathname="/results"
+                  />
+                ))}
+                <div className="text-center text-lg font-semibold mb-4">
+                  {selected}
+                </div>
+                <div className="bg-slate-700 border border-teal-300 mx-6 mb-4 p-5 rounded-lg">
+                  <div className="text-center text-lg font-semibold mb-2">
+                    Result
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    {dateData[0].players[0].amount
+                      ? playerAmounts
+                          .sort(
+                            (a, b) =>
+                              a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
+                          )
+                          .map((rank) =>
+                            Object.keys(rank).map((playerName) => (
+                              <div
+                                className="flex self-center justify-between w-[50%]"
+                                key={playerName}
+                              >
+                                <h1>{playerName}:</h1>
+                                <h1>{rank[playerName]}</h1>
+                              </div>
+                            ))
+                          )
+                      : playerRanks
+                          .sort(
+                            (a, b) =>
+                              a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
+                          )
+                          .map((rank) =>
+                            Object.keys(rank).map((playerName) => (
+                              <div
+                                className="flex self-center justify-between w-[50%]"
+                                key={playerName}
+                              >
+                                <h1>{playerName}:</h1>
+                                <h1>{rank[playerName] * 10}</h1>
+                              </div>
+                            ))
+                          )}
+                  </div>
+                </div>
+              </section>
+            ) : (
+              <div className="flex justify-center mt-10">There is no data for {selected}</div>
+            )}
+          </>
         ) : (
           <section>
             {resultsData.map((result) => (

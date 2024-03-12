@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PoolPoint
+PoolPoint is a web application built with Next.js 14, TypeScript, and MongoDB. It serves as a tool for counting points in snooker games and calculates the amount to be paid by players.
 
-## Getting Started
+## Features
+* Snooker Point Counter: Track points scored by players during snooker games.
+* Amount Calculation: Automatically calculate the amount to be paid by each player based on their scores.
+* Result History: View the history of past game results.
+* Date Filtering: Filter results by date to view specific game sessions.
+* Responsive Design: Ensures usability across various devices and screen sizes.
 
-First, run the development server:
+## Usage
+1. Visit the [PoolPoint web application](https://pool-point.vercel.app/).
+2. Start a new game session by entering the player names and keeping track of their scores.
+3. Once the game is finished, submit the results to calculate the amount to be paid by each player.
+4. View the result history to see past game sessions and amounts paid.
+
+## Installation
+1. Clone the repository:
+
+```bash
+git clone https://github.com/H-R-Wells2/pool-point
+```
+2. Install dependencies:
+
+```bash
+cd poolpoint
+npm install
+```
+
+3. Set up environment variables:
+
+Create a `.env.local` file in the root directory.
+Add your MongoDB connection string as `MONGODB_URI`.
+Add any other necessary environment variables.
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Access the application at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
+Contributions are welcome! If you have any suggestions, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Author
+* [HRWells](https://github.com/H-R-Wells2)

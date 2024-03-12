@@ -8,6 +8,7 @@ interface Params {
   players: Array<{
     playerName: string;
     score: number;
+    amount: number;
   }>;
 }
 

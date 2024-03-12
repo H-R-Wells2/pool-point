@@ -13,8 +13,12 @@ import Timer from "@/components/Timer";
 const Game = () => {
   const router = useRouter();
 
-  const [playerNames, setPlayerNames, playerScores, setPlayerScores] =
-    useResultContext();
+  const [
+    playerNames,
+    setPlayerNames,
+    playerScores,
+    setPlayerScores,
+  ] = useResultContext();
 
   const handleFormSubmit = (names: string[]) => {
     setPlayerNames(names);
@@ -23,11 +27,19 @@ const Game = () => {
     setPlayerScores(initialScores);
   };
 
-
   const submitResult = async () => {
-    const playersData = playerNames.map((name) => ({
+    const sortedPlayerScores = Object.entries(playerScores).sort(
+      (a, b) => b[1] - a[1]
+    );
+
+    // Calculate amounts based on ranking and number of players
+    const numberOfPlayers = sortedPlayerScores.length;
+    const amounts = calculateAmounts(numberOfPlayers);
+
+    const playersData = sortedPlayerScores.map(([name, score], index) => ({
       playerName: name,
-      score: playerScores[name],
+      score: score,
+      amount: amounts[index],
     }));
 
     await toast.promise(
@@ -48,6 +60,21 @@ const Game = () => {
     setPlayerScores({});
 
     router.push("/results");
+  };
+
+  // Function to calculate amounts based on the number of players
+  const calculateAmounts = (numberOfPlayers: number) => {
+    switch (numberOfPlayers) {
+      case 2:
+        return [50, 50];
+      case 3:
+        return [25, 32, 43];
+      default:
+        return Array.from(
+          { length: numberOfPlayers },
+          (_, index) => (index + 1) * 10
+        );
+    }
   };
 
   return (

@@ -11,6 +11,9 @@ const resultSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
+      amount:{
+        type: Number,
+      }
     },
   ],
   date: {

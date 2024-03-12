@@ -73,9 +73,27 @@ function calculatePlayerAmount(data: any): PlayerRank[] {
     return [];
   }
 
-  if (data[0].date < new Date("2024-03-12")) {
+  const staticDate = new Date("2024-03-12");
+
+  // Convert the static date to UTC to ensure consistent comparison
+  const staticDateUTC = new Date(
+    Date.UTC(
+      staticDate.getFullYear(),
+      staticDate.getMonth(),
+      staticDate.getDate(),
+      staticDate.getHours(),
+      staticDate.getMinutes(),
+      staticDate.getSeconds(),
+      staticDate.getMilliseconds()
+    )
+  );
+
+  if (data[0].date < staticDateUTC) {
+    console.log("return empty")
     return [];
   }
+  console.log("Current date is " + staticDateUTC);
+  console.log("Date in DB is" + data[0].date);
 
   const playerRanks: PlayerRank = {};
 

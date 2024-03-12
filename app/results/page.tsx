@@ -21,6 +21,7 @@ const fetchResults = async (date: string) => {
 interface Player {
   playerName: string;
   score: number;
+  amount: number;
 }
 
 interface Document {
@@ -66,6 +67,45 @@ function calculatePlayerRanks(data: any): PlayerRank[] {
   return playerRanksArray;
 }
 
+// function for calculating money
+function calculatePlayerAmount(data: any): PlayerRank[] {
+  if (data == undefined || null) {
+    return [];
+  }
+
+  if (data[0].date < new Date("2024-03-12")) {
+    return [];
+  }
+
+  const playerRanks: PlayerRank = {};
+
+  data.forEach((document: Document) => {
+    const players = document.players.slice();
+
+    players.sort((a, b) => b.amount - a.amount);
+
+    players.forEach((player: Player, index) => {
+      const playerName = player.playerName;
+      const amount = player.amount;
+
+      if (!playerRanks[playerName]) {
+        playerRanks[playerName] = 0;
+      }
+
+      playerRanks[playerName] += amount;
+    });
+  });
+
+  // Convert the player ranks object to an array of objects
+  const playerRanksArray: PlayerRank[] = Object.keys(playerRanks).map(
+    (playerName) => ({
+      [playerName]: playerRanks[playerName],
+    })
+  );
+
+  return playerRanksArray;
+}
+
 const page = async ({
   searchParams,
 }: {
@@ -96,6 +136,7 @@ const page = async ({
   );
 
   const playerRanks: PlayerRank[] = calculatePlayerRanks(dateData);
+  const playerAmounts: PlayerRank[] = calculatePlayerAmount(dateData);
 
   return (
     <div className="mt-20">
@@ -118,19 +159,37 @@ const page = async ({
                 Result
               </div>
               <div className="flex flex-col justify-center">
-                {playerRanks
-                  .sort((a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]])
-                  .map((rank) =>
-                    Object.keys(rank).map((playerName) => (
-                      <div
-                        className="flex self-center justify-between w-[50%]"
-                        key={playerName}
-                      >
-                        <h1>{playerName}:</h1>
-                        <h1>{rank[playerName] * 10}</h1>
-                      </div>
-                    ))
-                  )}
+                {dateData[0].date < new Date("2024-03-12")
+                  ? playerRanks
+                      .sort(
+                        (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
+                      )
+                      .map((rank) =>
+                        Object.keys(rank).map((playerName) => (
+                          <div
+                            className="flex self-center justify-between w-[50%]"
+                            key={playerName}
+                          >
+                            <h1>{playerName}:</h1>
+                            <h1>{rank[playerName] * 10}</h1>
+                          </div>
+                        ))
+                      )
+                  : playerAmounts
+                      .sort(
+                        (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
+                      )
+                      .map((rank) =>
+                        Object.keys(rank).map((playerName) => (
+                          <div
+                            className="flex self-center justify-between w-[50%]"
+                            key={playerName}
+                          >
+                            <h1>{playerName}:</h1>
+                            <h1>{rank[playerName]}</h1>
+                          </div>
+                        ))
+                      )}
               </div>
             </div>
           </section>

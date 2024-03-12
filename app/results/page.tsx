@@ -155,23 +155,8 @@ const page = async ({
                 Result
               </div>
               <div className="flex flex-col justify-center">
-                {dateData[0].date < new Date("2024-03-12")
-                  ? playerRanks
-                      .sort(
-                        (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
-                      )
-                      .map((rank) =>
-                        Object.keys(rank).map((playerName) => (
-                          <div
-                            className="flex self-center justify-between w-[50%]"
-                            key={playerName}
-                          >
-                            <h1>{playerName}:</h1>
-                            <h1>{rank[playerName] * 10}</h1>
-                          </div>
-                        ))
-                      )
-                  : playerAmounts
+                {dateData[0].players[0].amount
+                  ? playerAmounts
                       .sort(
                         (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
                       )
@@ -183,6 +168,21 @@ const page = async ({
                           >
                             <h1>{playerName}:</h1>
                             <h1>{rank[playerName]}</h1>
+                          </div>
+                        ))
+                      )
+                  : playerRanks
+                      .sort(
+                        (a, b) => a[Object.keys(a)[0]] - b[Object.keys(b)[0]]
+                      )
+                      .map((rank) =>
+                        Object.keys(rank).map((playerName) => (
+                          <div
+                            className="flex self-center justify-between w-[50%]"
+                            key={playerName}
+                          >
+                            <h1>{playerName}:</h1>
+                            <h1>{rank[playerName] * 10}</h1>
                           </div>
                         ))
                       )}

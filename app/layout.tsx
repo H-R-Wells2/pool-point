@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Pool Point Counter",
-  description: "Pool Point Counter by Parivartan team",
+  description: "Pool Point Counter by Shubham Kadam",
   manifest: "/manifest.json",
 };
 

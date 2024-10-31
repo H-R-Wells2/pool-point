@@ -9,6 +9,7 @@ interface ResultCardProps {
     players: {
       playerName: string;
       score: number;
+      isTeamWon?: boolean;
       _id: {
         $oid: string;
       };
@@ -37,8 +38,6 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
     return `${formattedDate} - ${time}`;
   };
 
-  // console.log(result.players.sort((a, b)=>a.score - b.score))
-
   return (
     <div className="bg-slate-700 mx-6 mb-4 p-5 rounded-lg">
       <div className="mb-5 flex items-center justify-between text-gray-300">
@@ -50,18 +49,26 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
       <div className="flex flex-col">
         {result.players
           .sort((a, b) => b.score - a.score)
-          .map((player, index) => (
-            <div
-              key={index}
-              className="flex self-center justify-between w-[50%]"
-            >
-              <h1 className="flex justify-between gap-2">
-                <span>{index + 1 + "."}</span>
-                {player.playerName}:
-              </h1>
-              <h1>{player.score}</h1>
-            </div>
-          ))}
+          .map((player, index) => {
+            const playerColor = player.isTeamWon === true
+              ? "text-green-500"
+              : player.isTeamWon === false
+              ? "text-red-500"
+              : "text-gray-300"; // Default color
+
+            return (
+              <div
+                key={index}
+                className="flex self-center justify-between w-[50%]"
+              >
+                <h1 className={`flex justify-between gap-2 ${playerColor}`}>
+                  <span>{index + 1 + "."}</span>
+                  {player.playerName}:
+                </h1>
+                <h1 className={playerColor}>{player.score}</h1>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

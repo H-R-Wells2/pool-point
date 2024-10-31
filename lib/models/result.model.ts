@@ -11,9 +11,12 @@ const resultSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      amount:{
+      amount: {
         type: Number,
-      }
+      },
+      isTeamWon: {
+        type: Boolean,
+      },
     },
   ],
   date: {

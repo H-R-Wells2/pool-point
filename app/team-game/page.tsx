@@ -19,6 +19,7 @@ interface PlayerData {
   playerName: string;
   score: number;
   amount: number;
+  isTeamWon?: boolean;
 }
 
 const TeamGame: React.FC = () => {
@@ -49,42 +50,50 @@ const TeamGame: React.FC = () => {
     const halfScore = Math.floor(score / 2);
     return score % 2 === 0
       ? [halfScore, halfScore]
-      : [halfScore + 1, halfScore + 1];
+      : [halfScore + 1, halfScore];
   };
 
   const submitResult = async () => {
     const team1Score = teamScores[teamNames[0].name];
     const team2Score = teamScores[teamNames[1].name];
-
+  
     const team1PlayerScores = splitTeamScore(team1Score);
     const team2PlayerScores = splitTeamScore(team2Score);
-
+  
     const team1Amount = team1Score >= team2Score ? 15 : 35;
     const team2Amount = team2Score > team1Score ? 15 : 35;
-
+  
+    // Determine winning and losing teams
+    const isTeam1Won = team1Score > team2Score;
+    const isTeam2Won = team2Score > team1Score;
+  
     const playersData: PlayerData[] = [
       {
         playerName: teamNames[0].players[0],
         score: team1PlayerScores[0],
         amount: team1Amount,
+        isTeamWon: isTeam1Won, // Set isTeamWon based on the result
       },
       {
         playerName: teamNames[0].players[1],
         score: team1PlayerScores[1],
         amount: team1Amount,
+        isTeamWon: isTeam1Won, // Set isTeamWon based on the result
       },
       {
         playerName: teamNames[1].players[0],
         score: team2PlayerScores[0],
         amount: team2Amount,
+        isTeamWon: isTeam2Won, // Set isTeamWon based on the result
       },
       {
         playerName: teamNames[1].players[1],
         score: team2PlayerScores[1],
         amount: team2Amount,
+        isTeamWon: isTeam2Won, // Set isTeamWon based on the result
       },
     ];
-
+  
     await toast.promise(
       createResult({ players: playersData }),
       {
@@ -94,11 +103,12 @@ const TeamGame: React.FC = () => {
       },
       { autoClose: 2000 }
     );
-
+  
     setTeamNames([]);
     setTeamScores({});
     router.push("/results");
   };
+  
 
   return (
     <div className="flex flex-col">

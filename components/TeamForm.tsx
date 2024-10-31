@@ -10,8 +10,8 @@ interface TeamFormProps {
 const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
   const [localTeamNames, setLocalTeamNames] = useState(["", ""]);
   const [localPlayerNames, setLocalPlayerNames] = useState([
-    ["", ""], // Team 1 players
-    ["", ""], // Team 2 players
+    ["", ""],
+    ["", ""],
   ]);
 
   const { setTimerSeconds } = useResultContext();

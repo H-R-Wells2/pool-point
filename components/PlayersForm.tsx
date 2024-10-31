@@ -3,7 +3,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useResultContext } from "@/context/resultContext";
 
-
 interface FormProps {
   onSubmit: (names: string[]) => void;
 }
@@ -42,11 +41,18 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
     });
   };
 
-  const [, , , , , setTimerSeconds] = useResultContext();
+  const {
+    setTimerSeconds,
+  } = useResultContext();
+  
+  const capitalizeFirstLetter = (name: string) => {
+    return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(names);
+    const capitalizedNames = names.map(capitalizeFirstLetter);
+    onSubmit(capitalizedNames);
     setTimerSeconds(0);
   };
 
@@ -63,7 +69,7 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
         className="mb-2 p-2 rounded-lg outline-none text-black"
         required
         minLength={3}
-        pattern="[A-Za-z0-9]+"
+        pattern="[A-Za-z0-9]+" 
         title="Only alphabets and numbers are allowed (no spaces)"
       />
     ));

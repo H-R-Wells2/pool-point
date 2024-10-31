@@ -2,7 +2,7 @@
 
 import React from "react";
 import PlayerCard from "@/components/PlayerCard";
-import PlayersForm from "@/components/PlayersForm";
+import TeamForm from "@/components/TeamForm";
 import { createResult } from "@/lib/actions/result.actions";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { toast } from "react-toastify";
@@ -10,9 +10,19 @@ import { useRouter } from "next/navigation";
 import { useResultContext } from "@/context/resultContext";
 import Timer from "@/components/Timer";
 
-const Game = () => {
-  const router = useRouter();
+interface Team {
+  name: string;
+  players: string[];
+}
 
+interface PlayerData {
+  playerName: string;
+  score: number;
+  amount: number;
+}
+
+const TeamGame: React.FC = () => {
+  const router = useRouter();
   const {
     teamNames,
     setTeamNames,
@@ -25,82 +35,88 @@ const Game = () => {
     timerSeconds,
     setTimerSeconds,
   } = useResultContext();
-  
 
-  const handleFormSubmit = (names: string[]) => {
-    setPlayerNames(names);
-    const initialScores: { [key: string]: number } = {};
-    names.forEach((name) => (initialScores[name] = 0));
-    setPlayerScores(initialScores);
+  const handleFormSubmit = (teams: Team[]) => {
+    setTeamNames(teams);
+    const initialScores = teams.reduce((scores, team) => {
+      scores[team.name] = 0;
+      return scores;
+    }, {} as Record<string, number>);
+    setTeamScores(initialScores);
+  };
+
+  const splitTeamScore = (score: number): [number, number] => {
+    const halfScore = Math.floor(score / 2);
+    return score % 2 === 0
+      ? [halfScore, halfScore]
+      : [halfScore + 1, halfScore + 1];
   };
 
   const submitResult = async () => {
-    const sortedPlayerScores = Object.entries(playerScores).sort(
-      (a, b) => b[1] - a[1]
-    );
+    const team1Score = teamScores[teamNames[0].name];
+    const team2Score = teamScores[teamNames[1].name];
 
-    // Calculate amounts based on ranking and number of players
-    const numberOfPlayers = sortedPlayerScores.length;
-    const amounts = calculateAmounts(numberOfPlayers);
+    const team1PlayerScores = splitTeamScore(team1Score);
+    const team2PlayerScores = splitTeamScore(team2Score);
 
-    const playersData = sortedPlayerScores.map(([name, score], index) => ({
-      playerName: name,
-      score: score,
-      amount: amounts[index],
-    }));
+    const team1Amount = team1Score >= team2Score ? 15 : 35;
+    const team2Amount = team2Score > team1Score ? 15 : 35;
+
+    const playersData: PlayerData[] = [
+      {
+        playerName: teamNames[0].players[0],
+        score: team1PlayerScores[0],
+        amount: team1Amount,
+      },
+      {
+        playerName: teamNames[0].players[1],
+        score: team1PlayerScores[1],
+        amount: team1Amount,
+      },
+      {
+        playerName: teamNames[1].players[0],
+        score: team2PlayerScores[0],
+        amount: team2Amount,
+      },
+      {
+        playerName: teamNames[1].players[1],
+        score: team2PlayerScores[1],
+        amount: team2Amount,
+      },
+    ];
 
     await toast.promise(
-      createResult({
-        players: playersData,
-      }),
+      createResult({ players: playersData }),
       {
-        pending: "Submitting Points...",
+        pending: "Submitting Team Points...",
         success: "Points submitted successfully!",
         error: "Error submitting points. Please try again.",
       },
-      {
-        autoClose: 2000,
-      }
+      { autoClose: 2000 }
     );
 
-    setPlayerNames([]);
-    setPlayerScores({});
-
+    setTeamNames([]);
+    setTeamScores({});
     router.push("/results");
-  };
-
-  // Function to calculate amounts based on the number of players
-  const calculateAmounts = (numberOfPlayers: number) => {
-    switch (numberOfPlayers) {
-      case 2:
-        return [50, 50];
-      case 3:
-        return [25, 32, 43];
-      default:
-        return Array.from(
-          { length: numberOfPlayers },
-          (_, index) => (index + 1) * 10
-        );
-    }
   };
 
   return (
     <div className="flex flex-col">
       <div className="mt-20 mb-10">
-        {playerNames.length === 0 ? (
+        {teamNames.length === 0 ? (
           <div className="w-full flex justify-center">
-            <PlayersForm onSubmit={handleFormSubmit} />
+            <TeamForm onSubmit={handleFormSubmit} />
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center">
             <Timer />
-            {playerNames.map((name, index) => (
+            {teamNames.map((team, index) => (
               <PlayerCard
                 key={index}
-                name={name}
-                score={playerScores[name]}
-                setScore={(score) =>
-                  setPlayerScores({ ...playerScores, [name]: score })
+                name={team.name}
+                score={teamScores[team.name]}
+                setScore={(score: number) =>
+                  setTeamScores({ ...teamScores, [team.name]: score })
                 }
               />
             ))}
@@ -118,19 +134,19 @@ const Game = () => {
                       Are you sure?
                     </AlertDialog.Title>
                     <AlertDialog.Description className="text-slate-300 mt-4 mb-5 text-[15px] leading-normal">
-                      Your score will be saved in PoolPoint. Submit to save your
-                      points
+                      Your team scores will be saved in PoolPoint. Submit to
+                      save your points.
                     </AlertDialog.Description>
                     <div className="flex justify-end gap-[25px] items-center">
                       <AlertDialog.Cancel asChild>
-                        <button className=" hover:bg-slate-600 inline-flex h-[33px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none outline-none border border-white focus:shadow-[0_0_0_2px]">
+                        <button className="hover:bg-slate-600 inline-flex h-[33px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none outline-none border border-white focus:shadow-[0_0_0_2px]">
                           Cancel
                         </button>
                       </AlertDialog.Cancel>
                       <AlertDialog.Action asChild>
                         <button
                           onClick={submitResult}
-                          className=" bg-teal-500 hover:bg-teal-600 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px]"
+                          className="bg-teal-500 hover:bg-teal-600 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px]"
                         >
                           Submit
                         </button>
@@ -147,4 +163,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default TeamGame;

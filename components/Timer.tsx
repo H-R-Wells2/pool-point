@@ -4,7 +4,18 @@ import { useResultContext } from "@/context/resultContext";
 import React, { useEffect } from "react";
 
 const Timer = () => {
-  const [, , , , timerSeconds, setTimerSeconds] = useResultContext();
+  const {
+    teamNames,
+    setTeamNames,
+    teamScores,
+    setTeamScores,
+    playerNames,
+    setPlayerNames,
+    playerScores,
+    setPlayerScores,
+    timerSeconds,
+    setTimerSeconds,
+  } = useResultContext();
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -6,8 +6,19 @@ import { useResultContext } from "@/context/resultContext";
 import { useRouter } from "next/navigation";
 
 const Home = () => {
-  const [playerNames, setPlayerNames, playerScores, setPlayerScores] =
-    useResultContext();
+  const {
+    teamNames,
+    setTeamNames,
+    teamScores,
+    setTeamScores,
+    playerNames,
+    setPlayerNames,
+    playerScores,
+    setPlayerScores,
+    timerSeconds,
+    setTimerSeconds,
+  } = useResultContext();
+  
   const router = useRouter();
 
   const newGame = () => {
@@ -21,6 +32,11 @@ const Home = () => {
       <button onClick={newGame} className="btn-primary w-1/2">
         New Game
       </button>
+      
+      <Link href={'/team-game'} className="btn-primary flex justify-center w-1/2">
+        New Team Game
+      </Link>
+      
       {playerNames.length > 0 && (
         <Link href={"/game"} className="btn-primary text-center w-1/2">
           Resume

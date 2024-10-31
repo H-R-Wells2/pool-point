@@ -34,7 +34,7 @@ const Home = () => {
       </button>
       
       <Link href={'/team-game'} className="btn-primary flex justify-center w-1/2">
-        New Team Game
+        Team Game
       </Link>
       
       {playerNames.length > 0 && (

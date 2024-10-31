@@ -1,19 +1,20 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { useResultContext } from "@/context/resultContext";
+import { FaEdit } from "react-icons/fa"; // Importing an edit icon
 
 interface TeamFormProps {
   onSubmit: (teams: { name: string; players: string[] }[]) => void;
 }
 
 const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
-  const [localTeamNames, setLocalTeamNames] = useState(["", ""]);
+  const [localTeamNames, setLocalTeamNames] = useState(["Team1", "Team2"]);
   const [localPlayerNames, setLocalPlayerNames] = useState([
     ["", ""],
     ["", ""],
   ]);
-
+  const [editingTeamIndex, setEditingTeamIndex] = useState<number | null>(null);
   const { setTimerSeconds } = useResultContext();
 
   const handleTeamNameChange = (index: number, value: string) => {
@@ -53,22 +54,45 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
   return (
     <div className="flex flex-col w-fit justify-center items-center mt-16">
       <form
-        className="flex flex-col justify-center items-center w-full bg-gray-700 px-3 py-5 rounded-lg"
+        className="flex flex-col justify-center items-center md:w-full bg-gray-700 md:px-3 py-5 rounded-lg w-[70vw] px-6"
         onSubmit={handleSubmit}
       >
         {/* Team 1 */}
-        <div className="flex flex-col items-center mb-6">
-          <input
-            type="text"
-            value={localTeamNames[0]}
-            onChange={(e) => handleTeamNameChange(0, e.target.value)}
-            placeholder="Team 1 Name"
-            className="mb-2 p-2 rounded-lg outline-none text-black"
-            required
-            minLength={3}
-            pattern="[A-Za-z0-9]+"
-            title="Only alphabets and numbers are allowed (no spaces)"
-          />
+        <div className="flex flex-col items-center mb-6 w-full">
+          {editingTeamIndex === 0 ? (
+            <div className="flex items-center justify-center w-full">
+              <input
+                type="text"
+                value={localTeamNames[0]}
+                onChange={(e) => handleTeamNameChange(0, e.target.value)}
+                className="mb-2 p-2 rounded-lg outline-none text-black w-3/4"
+                required
+                minLength={3}
+                pattern="[A-Za-z0-9]+"
+                title="Only alphabets and numbers are allowed (no spaces)"
+              />
+              <button
+                type="button"
+                onClick={() => setEditingTeamIndex(null)}
+                className="ml-2 mb-2 text-teal-500 w-1/4 font-semibold"
+              >
+                Save
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center mb-5">
+              <span className="text-white mr-2 font-semibold text-xl">
+                {localTeamNames[0]}
+              </span>
+              <button
+                type="button"
+                onClick={() => setEditingTeamIndex(0)}
+                className="text-teal-500"
+              >
+                <FaEdit className="w-5 h-5" />
+              </button>
+            </div>
+          )}
           {localPlayerNames[0].map((name, index) => (
             <input
               key={`team1-player${index}`}
@@ -76,7 +100,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
               value={name}
               onChange={(e) => handlePlayerNameChange(0, index, e.target.value)}
               placeholder={`Player ${index + 1} of Team 1`}
-              className="mb-2 p-2 rounded-lg outline-none text-black"
+              className="mb-2 p-2 rounded-lg outline-none text-black w-full"
               required
               minLength={3}
               pattern="[A-Za-z0-9]+"
@@ -86,18 +110,41 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
         </div>
 
         {/* Team 2 */}
-        <div className="flex flex-col items-center mb-6">
-          <input
-            type="text"
-            value={localTeamNames[1]}
-            onChange={(e) => handleTeamNameChange(1, e.target.value)}
-            placeholder="Team 2 Name"
-            className="mb-2 p-2 rounded-lg outline-none text-black"
-            required
-            minLength={3}
-            pattern="[A-Za-z0-9]+"
-            title="Only alphabets and numbers are allowed (no spaces)"
-          />
+        <div className="flex flex-col items-center mb-6 pt-6 w-full  border-slate-200 border-t-2">
+          {editingTeamIndex === 1 ? (
+            <div className="flex items-center justify-center w-full">
+              <input
+                type="text"
+                value={localTeamNames[1]}
+                onChange={(e) => handleTeamNameChange(1, e.target.value)}
+                className="mb-2 p-2 rounded-lg outline-none text-black w-3/4"
+                required
+                minLength={3}
+                pattern="[A-Za-z0-9]+"
+                title="Only alphabets and numbers are allowed (no spaces)"
+              />
+              <button
+                type="button"
+                onClick={() => setEditingTeamIndex(null)}
+                className="ml-2 mb-2 text-teal-500 w-1/4 font-semibold"
+              >
+                Save
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center mb-5">
+              <span className="text-white mr-2 font-semibold text-xl">
+                {localTeamNames[1]}
+              </span>
+              <button
+                type="button"
+                onClick={() => setEditingTeamIndex(1)}
+                className="text-teal-500"
+              >
+                <FaEdit className="w-5 h-5" />
+              </button>
+            </div>
+          )}
           {localPlayerNames[1].map((name, index) => (
             <input
               key={`team2-player${index}`}
@@ -105,7 +152,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
               value={name}
               onChange={(e) => handlePlayerNameChange(1, index, e.target.value)}
               placeholder={`Player ${index + 1} of Team 2`}
-              className="mb-2 p-2 rounded-lg outline-none text-black"
+              className="mb-2 p-2 rounded-lg outline-none text-black w-full"
               required
               minLength={3}
               pattern="[A-Za-z0-9]+"
@@ -116,9 +163,9 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
 
         <button
           type="submit"
-          className="bg-teal-500 text-white px-4 py-2 rounded-lg"
+          className="bg-teal-500 text-white px-4 py-2 rounded-lg w-full"
         >
-          Start Team Game
+          Start Game
         </button>
       </form>
     </div>

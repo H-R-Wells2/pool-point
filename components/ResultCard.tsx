@@ -54,7 +54,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, pathname }) => {
               ? "text-green-500"
               : player.isTeamWon === false
               ? "text-red-500"
-              : "text-gray-300"; // Default color
+              : "text-gray-300";
 
             return (
               <div

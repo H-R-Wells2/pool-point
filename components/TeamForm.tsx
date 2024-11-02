@@ -2,7 +2,7 @@
 
 import React, { useState, FormEvent } from "react";
 import { useResultContext } from "@/context/resultContext";
-import { FaEdit } from "react-icons/fa"; // Importing an edit icon
+import { FaEdit } from "react-icons/fa"; 
 
 interface TeamFormProps {
   onSubmit: (teams: { name: string; players: string[] }[]) => void;
@@ -36,6 +36,29 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
       return updatedPlayers;
     });
   };
+
+  const shufflePlayers = () => {
+    const allPlayerNames = [
+      ...localPlayerNames[0],
+      ...localPlayerNames[1],
+    ].filter((name) => name);
+  
+    if (allPlayerNames.length < 4) {
+      alert("Please enter names for all players.");
+      return;
+    }
+  
+    const shuffledNames = allPlayerNames.sort(() => Math.random() - 0.5);
+  
+    const pairs = [];
+    for (let i = 0; i < shuffledNames.length / 2; i++) {
+      pairs.push([shuffledNames[i], shuffledNames[shuffledNames.length - 1 - i]]);
+    }
+  
+    setLocalPlayerNames([pairs[0], pairs[1]]);
+  };
+  
+  
 
   const capitalizeFirstLetter = (name: string) => {
     return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -110,7 +133,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
         </div>
 
         {/* Team 2 */}
-        <div className="flex flex-col items-center mb-6 pt-6 w-full  border-slate-200 border-t-2">
+        <div className="flex flex-col items-center mb-6 pt-6 w-full border-slate-200 border-t-2">
           {editingTeamIndex === 1 ? (
             <div className="flex items-center justify-center w-full">
               <input
@@ -160,6 +183,15 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
             />
           ))}
         </div>
+
+        {/* Shuffle Button */}
+        <button
+          type="button"
+          onClick={shufflePlayers}
+          className="bg-teal-500 text-white px-4 py-2 rounded-lg mb-2 w-full"
+        >
+          Shuffle Players
+        </button>
 
         <button
           type="submit"

@@ -63,7 +63,6 @@ const TeamGame: React.FC = () => {
     const team1Amount = team1Score >= team2Score ? 15 : 35;
     const team2Amount = team2Score > team1Score ? 15 : 35;
   
-    // Determine winning and losing teams
     const isTeam1Won = team1Score > team2Score;
     const isTeam2Won = team2Score > team1Score;
   
@@ -72,25 +71,25 @@ const TeamGame: React.FC = () => {
         playerName: teamNames[0].players[0],
         score: team1PlayerScores[0],
         amount: team1Amount,
-        isTeamWon: isTeam1Won, // Set isTeamWon based on the result
+        isTeamWon: isTeam1Won,
       },
       {
         playerName: teamNames[0].players[1],
         score: team1PlayerScores[1],
         amount: team1Amount,
-        isTeamWon: isTeam1Won, // Set isTeamWon based on the result
+        isTeamWon: isTeam1Won,
       },
       {
         playerName: teamNames[1].players[0],
         score: team2PlayerScores[0],
         amount: team2Amount,
-        isTeamWon: isTeam2Won, // Set isTeamWon based on the result
+        isTeamWon: isTeam2Won,
       },
       {
         playerName: teamNames[1].players[1],
         score: team2PlayerScores[1],
         amount: team2Amount,
-        isTeamWon: isTeam2Won, // Set isTeamWon based on the result
+        isTeamWon: isTeam2Won,
       },
     ];
   

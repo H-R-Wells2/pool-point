@@ -3,6 +3,7 @@
 import React, { useState, FormEvent } from "react";
 import { useResultContext } from "@/context/resultContext";
 import { FaEdit } from "react-icons/fa"; 
+import { toast } from "react-toastify";
 
 interface TeamFormProps {
   onSubmit: (teams: { name: string; players: string[] }[]) => void;
@@ -44,7 +45,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
     ].filter((name) => name);
   
     if (allPlayerNames.length < 4) {
-      alert("Please enter names for all players.");
+      toast.error("Please enter names for all players.")
       return;
     }
   

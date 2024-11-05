@@ -30,7 +30,9 @@ function DeleteResult({ resultId }: Props) {
         error: "Error deleting result. Please try again.",
       });
 
-      router.push("/admin");
+      setAdKey("");
+
+      router.refresh();
     } else {
       toast.error("Please enter valid key");
       setAdKey("");

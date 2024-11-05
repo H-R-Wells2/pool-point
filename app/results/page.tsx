@@ -13,7 +13,6 @@ const fetchResults = async (date: string) => {
   if (!date) return null;
 
   const data = await fetchResultsByDate(new Date(date));
-  // console.log(data);
   return data;
 };
 
@@ -201,7 +200,7 @@ const page = async ({
           <section>
             {resultsData.map((result) => (
               <ResultCard
-                key={result._id.$oid}
+                key={result._id}
                 result={result}
                 pathname="/results"
               />

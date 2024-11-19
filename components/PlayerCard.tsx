@@ -94,7 +94,7 @@ const PlayerCard = ({ name, players, score, setScore }: Props) => {
       </div>
       <div className="flex gap-5">
         <div className="flex flex-1 flex-col">
-          <div className="flex w-fit gap-2 mb-2">
+          <div className="flex w-full justify-center gap-2 mb-2">
             <button
               className="bg-red-500 h-11 w-11 rounded-full"
               onClick={() => handleScoreChange(-1)}
@@ -114,7 +114,7 @@ const PlayerCard = ({ name, players, score, setScore }: Props) => {
               -3
             </button>
           </div>
-          <div className="flex w-fit gap-2 mb-2">
+          <div className="flex w-full justify-center gap-2 mb-2">
             <button
               className="bg-yellow-700 h-11 w-11 rounded-full"
               onClick={() => handleScoreChange(-4)}
@@ -151,7 +151,7 @@ const PlayerCard = ({ name, players, score, setScore }: Props) => {
         </div>
 
         <div className="flex flex-1 flex-col">
-          <div className="flex w-fit gap-2 mb-2">
+          <div className="flex w-full justify-center gap-2 mb-2">
             <button
               className="bg-red-500 h-11 w-11 rounded-full"
               onClick={() => handleScoreChange(1)}
@@ -171,7 +171,7 @@ const PlayerCard = ({ name, players, score, setScore }: Props) => {
               +3
             </button>
           </div>
-          <div className="flex w-fit gap-2 mb-2">
+          <div className="flex w-full justify-center gap-2 mb-2">
             <button
               className="bg-yellow-700 h-11 w-11 rounded-full"
               onClick={() => handleScoreChange(4)}
@@ -191,7 +191,7 @@ const PlayerCard = ({ name, players, score, setScore }: Props) => {
               +6
             </button>
           </div>
-          <div className="flex w-full justify-center gap-2 ">
+          <div className="flex w-full justify-center gap-2">
             <button
               className="bg-black h-11 w-11 rounded-full"
               onClick={() => handleScoreChange(7)}

@@ -5,18 +5,7 @@ import React, { useEffect } from "react";
 import { FaRegClock } from "react-icons/fa";
 
 const Timer = () => {
-  const {
-    teamNames,
-    setTeamNames,
-    teamScores,
-    setTeamScores,
-    playerNames,
-    setPlayerNames,
-    playerScores,
-    setPlayerScores,
-    timerSeconds,
-    setTimerSeconds,
-  } = useResultContext();
+  const { timerSeconds, setTimerSeconds } = useResultContext();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,13 +20,15 @@ const Timer = () => {
 
   return (
     <div className="flex w-full max-w-sm px-4 justify-end items-center">
-      <div className="flex w-fit justify-center items-center border gap-1 px-2 rounded-lg">
-      <FaRegClock />
-      <span>{`${minutes}:${
-        remainingSeconds < 10 ? "0" : ""
-      }${remainingSeconds}`}</span>
-    </div>
+      <div className="flex w-20 justify-between items-center border gap-1 px-2 rounded-lg">
+        <div>
+          <FaRegClock />
+        </div>
+        <span>{`${minutes}:${
+          remainingSeconds < 10 ? "0" : ""
+        }${remainingSeconds}`}</span>
       </div>
+    </div>
   );
 };
 

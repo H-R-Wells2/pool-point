@@ -9,7 +9,7 @@ body {
 }
 
 .btn-primary {
-  @apply bg-teal-500 text-white px-4 py-2 rounded-lg;
+  @apply bg-teal-500 text-white px-4 py-2 rounded-lg w-full max-w-sm font-semibold;
 }
 
 input,
@@ -40,4 +40,59 @@ input::-webkit-inner-spin-button {
   100% {
     transform: scaleY(1);
   }
+}
+
+/* Custom Toggle Wrapper */
+.checkbox-wrapper .tgl-ios + .tgl-btn {
+  @apply bg-gray-300 rounded-full border border-gray-300 relative cursor-pointer;
+  width: 3.6rem;
+  height: 1.9rem;
+  padding: 2px;
+  transition: all 0.4s ease;
+  transition: background 0.5s ease
+}
+
+/* The Circle (Switch Knob) */
+.checkbox-wrapper .tgl-ios + .tgl-btn:after {
+  @apply bg-white rounded-full absolute;
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 0.13rem;
+  left: 0.25rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Checked state */
+.checkbox-wrapper .tgl-ios:checked + .tgl-btn {
+  @apply bg-teal-500;
+}
+
+.checkbox-wrapper .tgl-ios:checked + .tgl-btn:after {
+  @apply translate-x-full;
+  left: auto;
+  right: 1.72rem;
+}
+
+/* Disabled state */
+.checkbox-wrapper .tgl-ios:disabled + .tgl-btn {
+  @apply bg-gray-500 cursor-not-allowed;
+}
+
+.checkbox-wrapper .tgl-ios:disabled + .tgl-btn:after {
+  @apply bg-gray-400; 
+  box-shadow: none; 
+  transition: none;
+}
+
+/* Remove highlight on parent and checkbox wrapper */
+.checkbox-wrapper,
+.checkbox-wrapper * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.checkbox-wrapper,
+.checkbox-wrapper *:focus {
+  outline: none;
 }

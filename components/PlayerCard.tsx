@@ -13,7 +13,7 @@ const PlayerCard = ({ name, players, score, setScore }: Props) => {
   };
 
   return (
-    <div className="my-3 bg-slate-700 rounded-lg p-4 max-w-sm">
+    <div className="my-3 bg-slate-700 rounded-lg p-4 max-w-sm w-full">
       <div className="flex w-full items-center mb-5 border-b border-gray-900">
         <div className="w-full flex justify-between">
           <div className="flex flex-col mb-2">

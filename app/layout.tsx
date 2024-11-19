@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-gray-900 text-white h-screen selection:bg-gray-900`}
+        className={`${inter.className} bg-gray-900 text-white selection:bg-gray-900`}
       >
         <Navbar />
         <ToastContainer theme="dark" autoClose={2000} />

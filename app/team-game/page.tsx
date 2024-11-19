@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useResultContext } from "@/context/resultContext";
 import Timer from "@/components/Timer";
+import Cookies from "js-cookie";
 
 interface Team {
   name: string;
@@ -24,12 +25,8 @@ interface PlayerData {
 
 const TeamGame: React.FC = () => {
   const router = useRouter();
-  const {
-    teamNames,
-    setTeamNames,
-    teamScores,
-    setTeamScores,
-  } = useResultContext();
+  const { teamNames, setTeamNames, teamScores, setTeamScores } =
+    useResultContext();
 
   const handleFormSubmit = (teams: Team[]) => {
     setTeamNames(teams);
@@ -48,60 +45,151 @@ const TeamGame: React.FC = () => {
   };
 
   const submitResult = async () => {
+    const acChecked = Cookies.get("acChecked") === "true";
+
+    const currentAmount = acChecked ? 120 : 100;
+
     const team1Score = teamScores[teamNames[0].name];
     const team2Score = teamScores[teamNames[1].name];
-  
+
     const team1PlayerScores = splitTeamScore(team1Score);
     const team2PlayerScores = splitTeamScore(team2Score);
-  
-    const team1Amount = team1Score >= team2Score ? 15 : 35;
-    const team2Amount = team2Score > team1Score ? 15 : 35;
-  
-    const isTeam1Won = team1Score > team2Score;
-    const isTeam2Won = team2Score > team1Score;
-  
-    const playersData: PlayerData[] = [
-      {
-        playerName: teamNames[0].players[0],
-        score: team1PlayerScores[0],
-        amount: team1Amount,
-        isTeamWon: isTeam1Won,
-      },
-      {
-        playerName: teamNames[0].players[1],
-        score: team1PlayerScores[1],
-        amount: team1Amount,
-        isTeamWon: isTeam1Won,
-      },
-      {
-        playerName: teamNames[1].players[0],
-        score: team2PlayerScores[0],
-        amount: team2Amount,
-        isTeamWon: isTeam2Won,
-      },
-      {
-        playerName: teamNames[1].players[1],
-        score: team2PlayerScores[1],
-        amount: team2Amount,
-        isTeamWon: isTeam2Won,
-      },
-    ];
-  
-    await toast.promise(
-      createResult({ players: playersData }),
-      {
-        pending: "Submitting Team Points...",
-        success: "Points submitted successfully!",
-        error: "Error submitting points. Please try again.",
-      },
-      { autoClose: 2000 }
-    );
-  
+
+    if (currentAmount === 100) {
+      const team1Amount = team1Score > team2Score ? 15 : 35;
+      const team2Amount = team2Score > team1Score ? 15 : 35;
+
+      const isTeam1Won = team1Score > team2Score;
+      const isTeam2Won = team2Score > team1Score;
+
+      const playersData: PlayerData[] = [
+        {
+          playerName: teamNames[0].players[0],
+          score: team1PlayerScores[0],
+          amount: team1Amount,
+          isTeamWon: isTeam1Won,
+        },
+        {
+          playerName: teamNames[0].players[1],
+          score: team1PlayerScores[1],
+          amount: team1Amount,
+          isTeamWon: isTeam1Won,
+        },
+        {
+          playerName: teamNames[1].players[0],
+          score: team2PlayerScores[0],
+          amount: team2Amount,
+          isTeamWon: isTeam2Won,
+        },
+        {
+          playerName: teamNames[1].players[1],
+          score: team2PlayerScores[1],
+          amount: team2Amount,
+          isTeamWon: isTeam2Won,
+        },
+      ];
+
+      await toast.promise(
+        createResult({ players: playersData }),
+        {
+          pending: "Submitting Team Points...",
+          success: "Points submitted successfully!",
+          error: "Error submitting points. Please try again.",
+        },
+        { autoClose: 2000 }
+      );
+    } else if (currentAmount === 120) {
+      const team1Amount = team1Score > team2Score ? 20 : 40;
+      const team2Amount = team2Score > team1Score ? 20 : 40;
+
+      const isTeam1Won = team1Score > team2Score;
+      const isTeam2Won = team2Score > team1Score;
+
+      const playersData: PlayerData[] = [
+        {
+          playerName: teamNames[0].players[0],
+          score: team1PlayerScores[0],
+          amount: team1Amount,
+          isTeamWon: isTeam1Won,
+        },
+        {
+          playerName: teamNames[0].players[1],
+          score: team1PlayerScores[1],
+          amount: team1Amount,
+          isTeamWon: isTeam1Won,
+        },
+        {
+          playerName: teamNames[1].players[0],
+          score: team2PlayerScores[0],
+          amount: team2Amount,
+          isTeamWon: isTeam2Won,
+        },
+        {
+          playerName: teamNames[1].players[1],
+          score: team2PlayerScores[1],
+          amount: team2Amount,
+          isTeamWon: isTeam2Won,
+        },
+      ];
+
+      await toast.promise(
+        createResult({ players: playersData }),
+        {
+          pending: "Submitting Team Points...",
+          success: "Points submitted successfully!",
+          error: "Error submitting points. Please try again.",
+        },
+        { autoClose: 2000 }
+      );
+    } else {
+      const team1Amount = team1Score > team2Score ? 15 : 35;
+      const team2Amount = team2Score > team1Score ? 15 : 35;
+
+      const isTeam1Won = team1Score > team2Score;
+      const isTeam2Won = team2Score > team1Score;
+
+      const playersData: PlayerData[] = [
+        {
+          playerName: teamNames[0].players[0],
+          score: team1PlayerScores[0],
+          amount: team1Amount,
+          isTeamWon: isTeam1Won,
+        },
+        {
+          playerName: teamNames[0].players[1],
+          score: team1PlayerScores[1],
+          amount: team1Amount,
+          isTeamWon: isTeam1Won,
+        },
+        {
+          playerName: teamNames[1].players[0],
+          score: team2PlayerScores[0],
+          amount: team2Amount,
+          isTeamWon: isTeam2Won,
+        },
+        {
+          playerName: teamNames[1].players[1],
+          score: team2PlayerScores[1],
+          amount: team2Amount,
+          isTeamWon: isTeam2Won,
+        },
+      ];
+
+      await toast.promise(
+        createResult({ players: playersData }),
+        {
+          pending: "Submitting Team Points...",
+          success: "Points submitted successfully!",
+          error: "Error submitting points. Please try again.",
+        },
+        { autoClose: 2000 }
+      );
+    }
+
     setTeamNames([]);
     setTeamScores({});
     router.push("/results");
   };
-  
 
   return (
     <div className="flex flex-col">
@@ -127,7 +215,7 @@ const TeamGame: React.FC = () => {
             <div className="flex w-full justify-center">
               <AlertDialog.Root>
                 <AlertDialog.Trigger asChild>
-                  <button className="mt-3 btn-primary mx-1 max-w-[350px] flex w-full justify-center">
+                  <button className="mt-3 btn-primary flex w-full justify-center">
                     Submit result
                   </button>
                 </AlertDialog.Trigger>

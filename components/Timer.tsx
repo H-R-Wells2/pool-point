@@ -2,6 +2,7 @@
 
 import { useResultContext } from "@/context/resultContext";
 import React, { useEffect } from "react";
+import { FaRegClock } from "react-icons/fa";
 
 const Timer = () => {
   const {
@@ -29,11 +30,14 @@ const Timer = () => {
   const remainingSeconds: number = timerSeconds % 60;
 
   return (
-    <div className="flex w-full max-w-sm px-4 justify-end">
+    <div className="flex w-full max-w-sm px-4 justify-end items-center">
+      <div className="flex w-fit justify-center items-center border gap-1 px-2 rounded-lg">
+      <FaRegClock />
       <span>{`${minutes}:${
         remainingSeconds < 10 ? "0" : ""
       }${remainingSeconds}`}</span>
     </div>
+      </div>
   );
 };
 

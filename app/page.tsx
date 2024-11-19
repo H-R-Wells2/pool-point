@@ -4,9 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { useResultContext } from "@/context/resultContext";
 import { useRouter } from "next/navigation";
-import { FaPlay, FaUsers, FaRedo, FaTrophy, FaCog } from "react-icons/fa";
+import { FaPlay, FaUsers, FaTrophy } from "react-icons/fa";
 import { VscDebugContinue } from "react-icons/vsc";
-import { GrResume } from "react-icons/gr";
 import { MdSettings } from "react-icons/md";
 
 const Home = () => {

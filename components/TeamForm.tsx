@@ -212,7 +212,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
           type="button"
           onClick={shufflePlayers}
           disabled={shuffling} 
-          className={`bg-teal-500 text-white px-4 py-2 rounded-lg mb-2 w-full ${
+          className={`btn-primary mb-2 ${
             shuffling ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
@@ -221,7 +221,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
 
         <button
           type="submit"
-          className="bg-teal-500 text-white px-4 py-2 rounded-lg w-full"
+          className="btn-primary"
         >
           Start Game
         </button>

@@ -2,6 +2,7 @@
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useResultContext } from "@/context/resultContext";
+import { FaPlay } from "react-icons/fa";
 
 interface FormProps {
   onSubmit: (names: string[]) => void;
@@ -98,9 +99,9 @@ const PlayersForm: React.FC<FormProps> = ({ onSubmit }) => {
         {renderInputs()}
         <button
           type="submit"
-          className="bg-teal-500 text-white px-4 py-2 rounded-lg w-full mt-4"
+          className="btn-primary mt-4 flex justify-center items-center gap-2"
         >
-          Start Game
+          <FaPlay />Start Game
         </button>
       </form>
     </div>

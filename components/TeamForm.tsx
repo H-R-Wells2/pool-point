@@ -211,7 +211,7 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit }) => {
         <button
           type="button"
           onClick={shufflePlayers}
-          disabled={shuffling} // Disable the button while shuffling
+          disabled={shuffling} 
           className={`bg-teal-500 text-white px-4 py-2 rounded-lg mb-2 w-full ${
             shuffling ? "opacity-50 cursor-not-allowed" : ""
           }`}

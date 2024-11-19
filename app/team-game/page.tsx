@@ -29,12 +29,6 @@ const TeamGame: React.FC = () => {
     setTeamNames,
     teamScores,
     setTeamScores,
-    playerNames,
-    setPlayerNames,
-    playerScores,
-    setPlayerScores,
-    timerSeconds,
-    setTimerSeconds,
   } = useResultContext();
 
   const handleFormSubmit = (teams: Team[]) => {

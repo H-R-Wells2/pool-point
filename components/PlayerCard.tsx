@@ -2,11 +2,12 @@
 
 interface Props {
   name: string;
+  players?: string[];
   score: number;
   setScore: (score: number) => void;
 }
 
-const PlayerCard = ({ name, score, setScore }: Props) => {
+const PlayerCard = ({ name, players, score, setScore }: Props) => {
   const handleScoreChange = (amount: number) => {
     setScore(score + amount);
   };
@@ -15,7 +16,17 @@ const PlayerCard = ({ name, score, setScore }: Props) => {
     <div className="my-3 bg-slate-700 rounded-lg p-4 max-w-sm">
       <div className="flex w-full items-center mb-5 border-b border-gray-900">
         <div className="w-full flex justify-between">
-          <h1 className="text-2xl font-normal mb-2">{name}</h1>
+          <div className="flex flex-col mb-2">
+            <h1 className="text-2xl font-normal">{name}</h1>
+            <div className="flex flex-col">
+              {/* Render players under the team name */}
+              {players?.map((player, index) => (
+                <div key={index} className="text-slate-400 text-xs">
+                  {index + 1}. {player}
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="flex justify-center items-center mx-2 mb-2">
             <button
               className="mr-6 bg-gray-800 p-1 rounded-lg"

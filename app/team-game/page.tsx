@@ -123,6 +123,7 @@ const TeamGame: React.FC = () => {
               <PlayerCard
                 key={index}
                 name={team.name}
+                players={team.players}
                 score={teamScores[team.name]}
                 setScore={(score: number) =>
                   setTeamScores({ ...teamScores, [team.name]: score })
